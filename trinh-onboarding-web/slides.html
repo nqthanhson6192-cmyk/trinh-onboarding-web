@@ -470,7 +470,7 @@
       <i class="fa-solid fa-house"></i> Cổng Hội Nhập
     </a>
     <span style="color: rgba(255,255,255,.15);">|</span>
-    <div class="slide-counter"><span id="cur">1</span> / <span id="tot">11</span></div>
+    <div class="slide-counter"><span id="cur">1</span> / <span id="tot">21</span></div>
   </div>
 </div>
 
@@ -518,7 +518,7 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 3: TRÌNH QUA NHỮNG CON SỐ (NEW) ─── -->
+  <!-- ─── SLIDE 3: TRÌNH QUA NHỮNG CON SỐ ─── -->
   <div class="slide bg-green" id="s3">
     <div class="slide-inner">
       <div class="slide-tag gold"><i class="fa-solid fa-chart-simple"></i> Quy Mô Phát Triển</div>
@@ -651,8 +651,90 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 5: TRIẾT LÝ SLOGAN ─── -->
-  <div class="slide bg-navy" id="s5">
+  <!-- ─── SLIDE 5: HỆ SINH THÁI TRẢI NGHIỆM ─── -->
+  <div class="slide bg-slate" id="s5">
+    <div class="slide-inner">
+      <div class="slide-tag"><i class="fa-solid fa-cubes"></i> Hệ Sinh Thái Trải Nghiệm</div>
+      <h2 class="slide-title">Hệ Sinh Thái Trải Nghiệm Toàn Diện</h2>
+      <p class="slide-subtitle">Trình kết hợp chuỗi cửa hàng, sản phẩm đóng gói và workshop cộng đồng để tạo ra trải nghiệm trọn vẹn.</p>
+      
+      <style>
+        .eco-grid-s {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+        }
+        @media (max-width: 768px) {
+          .eco-grid-s {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+        }
+        .eco-card-s {
+          border-radius: 16px;
+          overflow: hidden;
+          background: rgba(255,255,255,.05);
+          border: 1px solid rgba(255,255,255,.08);
+          transition: all .3s ease;
+          display: flex;
+          flex-direction: column;
+        }
+        .eco-card-s:hover {
+          transform: translateY(-4px);
+          border-color: var(--blue);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .eco-img-s {
+          height: 140px;
+          width: 100%;
+          object-fit: cover;
+          border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+        .eco-body-s {
+          padding: 16px;
+          flex-grow: 1;
+        }
+        .eco-body-s h4 {
+          font-size: 15px;
+          font-weight: 800;
+          color: #fff;
+          margin-bottom: 8px;
+        }
+        .eco-body-s p {
+          font-size: 12.5px;
+          color: rgba(255,255,255,.65);
+          line-height: 1.5;
+        }
+      </style>
+      
+      <div class="eco-grid-s">
+        <div class="eco-card-s" style="border-left: 3px solid var(--blue);">
+          <img src="store-chain.jpg" class="eco-img-s" alt="Chuỗi cửa hàng">
+          <div class="eco-body-s">
+            <h4>1. Chuỗi Cửa Hàng Trình Cà Phê</h4>
+            <p>Hệ thống phục vụ tại chỗ & mang đi mang phong cách mộc mạc. Nổi bật với cà phê bơ sáp Krông Năng, kem bơ dẻo và không gian xanh mát gần gũi.</p>
+          </div>
+        </div>
+        <div class="eco-card-s" style="border-left: 3px solid #10B981;">
+          <img src="coffee-packages.jpg" class="eco-img-s" alt="Sản xuất đóng gói">
+          <div class="eco-body-s">
+            <h4>2. Sản Xuất &amp; Bán Lẻ Cà Phê Đóng Gói</h4>
+            <p>Phân phối hạt cà phê đặc sản rang mộc, cà phê hòa tan cao cấp và các bộ quà tặng độc đáo tại Lotte Mart, Hanigo và các điểm du lịch lớn.</p>
+          </div>
+        </div>
+        <div class="eco-card-s" style="border-left: 3px solid var(--gold);">
+          <img src="coffee-workshop.jpg" class="eco-img-s" alt="Workshop cộng đồng">
+          <div class="eco-body-s">
+            <h4>3. Workshop Trải Nghiệm Cộng Đồng</h4>
+            <p>Không gian kết nối thông qua các buổi workshop chia sẻ văn hóa cà phê đặc sản, đêm nhạc mộc, sự kiện cộng đồng và hoạt động trưng bày nghệ thuật local.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 6: TRIẾT LÝ SLOGAN ─── -->
+  <div class="slide bg-navy" id="s6">
     <div class="slide-inner" style="text-align:center">
       <div class="slide-tag gold"><i class="fa-solid fa-quote-left"></i> Triết Lý Thương Hiệu</div>
       <div class="philosophy-big">"Sống tươi mỗi ngày<br>qua tách cà phê"</div>
@@ -667,8 +749,187 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 6: CHUỖI CỬA HÀNG ─── -->
-  <div class="slide bg-slate" id="s6">
+  <!-- ─── SLIDE 7: 1. MÓN UỐNG TƯƠI NGON ─── -->
+  <div class="slide bg-coffee" id="s7">
+    <div class="slide-inner">
+      <div class="slide-tag gold"><i class="fa-solid fa-mug-hot"></i> Giá Trị 5 Tươi</div>
+      <h2 class="slide-title">1. Món uống TƯƠI NGON</h2>
+      <p class="slide-subtitle" style="margin-bottom: 20px;"><strong>Định nghĩa:</strong> Mang đến cho khách hàng trải nghiệm sản phẩm 100% tươi ngon hằng ngày, giữ trọn vẹn hương vị mộc mạc nguyên bản. Lựa chọn nguồn nguyên liệu rang mộc sạch sẽ, quy trình pha chế xay tươi mới hằng ngày trực tiếp tại cửa hàng.</p>
+      
+      <style>
+        .behave-list {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+        @media (max-width: 640px) {
+          .behave-list {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+        }
+        .behave-card {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-left: 3px solid var(--gold);
+          border-radius: 12px;
+          padding: 16px;
+          display: flex;
+          gap: 12px;
+          align-items: flex-start;
+        }
+        .behave-card i {
+          font-size: 16px;
+          color: var(--gold);
+          margin-top: 2px;
+        }
+        .behave-card p {
+          font-size: 13px;
+          color: rgba(255, 255, 255, 0.8);
+          line-height: 1.5;
+        }
+      </style>
+      
+      <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--gold);margin-right:6px;"></i> Hành vi ứng xử bắt buộc:</div>
+      <div class="behave-list">
+        <div class="behave-card">
+          <i class="fa-solid fa-circle-check"></i>
+          <p>Rửa tay sát khuẩn trước ca pha chế &amp; sau mỗi lần đi vệ sinh hoặc dọn dẹp.</p>
+        </div>
+        <div class="behave-card">
+          <i class="fa-solid fa-circle-check"></i>
+          <p>Đong đếm pha chế chuẩn xác 100% theo đúng công thức định lượng tiêu chuẩn.</p>
+        </div>
+        <div class="behave-card">
+          <i class="fa-solid fa-circle-check"></i>
+          <p>Phục vụ sản phẩm trong ly tách khô ráo, sạch vân tay và bóng loáng.</p>
+        </div>
+        <div class="behave-card">
+          <i class="fa-solid fa-circle-check"></i>
+          <p>Chủ động kiểm tra hạn sử dụng và cảm quan chất lượng nguyên vật liệu vào đầu ca làm.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 8: 2. KHÔNG GIAN TƯƠI XANH ─── -->
+  <div class="slide bg-green" id="s8">
+    <div class="slide-inner">
+      <div class="slide-tag gold"><i class="fa-solid fa-seedling"></i> Giá Trị 5 Tươi</div>
+      <h2 class="slide-title">2. Không gian TƯƠI XANH</h2>
+      <p class="slide-subtitle" style="margin-bottom: 20px;"><strong>Định nghĩa:</strong> Thiết kế không gian mộc mạc, bình dị, gần gũi và có gu thẩm mỹ độc đáo. Tôn trọng vẻ đẹp tự nhiên của cỏ cây, giữ gìn môi trường đạt chứng chỉ xanh và chủ động giảm thiểu tối đa rác thải nhựa.</p>
+      
+      <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--gold);margin-right:6px;"></i> Hành vi ứng xử bắt buộc:</div>
+      <div class="behave-list">
+        <div class="behave-card" style="border-left-color: #34d399;">
+          <i class="fa-solid fa-circle-check" style="color:#34d399;"></i>
+          <p>Chủ động nhặt rác ngay khi thấy dơ, không đùn đẩy hay chờ nhắc nhở.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: #34d399;">
+          <i class="fa-solid fa-circle-check" style="color:#34d399;"></i>
+          <p>Chăm sóc, nhặt lá úa và tưới nước cho cây cảnh quan mặt tiền hằng ca.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: #34d399;">
+          <i class="fa-solid fa-circle-check" style="color:#34d399;"></i>
+          <p>Sắp xếp bàn ghế thẳng tắp, ngăn nắp, lau sạch bụi mịn bề mặt hằng giờ.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: #34d399;">
+          <i class="fa-solid fa-circle-check" style="color:#34d399;"></i>
+          <p>Phân loại rác hữu cơ, rác vô cơ và rác tái chế tại quầy bar chuẩn xác 100%.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 9: 3. BẦU KHÔNG KHÍ TƯƠI VUI ─── -->
+  <div class="slide bg-navy" id="s9">
+    <div class="slide-inner">
+      <div class="slide-tag gold"><i class="fa-solid fa-face-smile"></i> Giá Trị 5 Tươi</div>
+      <h2 class="slide-title">3. Bầu không khí TƯƠI VUI</h2>
+      <p class="slide-subtitle" style="margin-bottom: 20px;"><strong>Định nghĩa:</strong> Lan tỏa nguồn năng lượng sống tích cực, vui tươi, ấm áp đến với bà con. Kiến tạo một không gian rôm rả, thân thiện để mọi người thoải mái trò chuyện, gắn kết tình cảm.</p>
+      
+      <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--gold);margin-right:6px;"></i> Hành vi ứng xử bắt buộc:</div>
+      <div class="behave-list">
+        <div class="behave-card" style="border-left-color: var(--blue);">
+          <i class="fa-solid fa-circle-check" style="color:var(--blue);"></i>
+          <p>Chủ động mở lời cười tươi chào đón/tạm biệt bà con khi vào/ra chi nhánh.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: var(--blue);">
+          <i class="fa-solid fa-circle-check" style="color:var(--blue);"></i>
+          <p>Giữ thái độ tích cực trong ca làm, tuyệt đối cấm cãi vã lớn tiếng trước mặt khách.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: var(--blue);">
+          <i class="fa-solid fa-circle-check" style="color:var(--blue);"></i>
+          <p>Mở nhạc đúng playlist quy định theo khung giờ, điều chỉnh âm lượng vừa phải.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: var(--blue);">
+          <i class="fa-solid fa-circle-check" style="color:var(--blue);"></i>
+          <p>Nói chuyện âm lượng lịch sự với đồng đội, không gây ồn ào ảnh hưởng tới khách.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 10: 4. TÌNH NGƯỜI TƯƠI TẮN ─── -->
+  <div class="slide bg-dark" id="s10">
+    <div class="slide-inner">
+      <div class="slide-tag gold"><i class="fa-solid fa-user-group"></i> Giá Trị 5 Tươi</div>
+      <h2 class="slide-title">4. Tình người TƯƠI TẮN</h2>
+      <p class="slide-subtitle" style="margin-bottom: 20px;"><strong>Định nghĩa:</strong> Gieo duyên và đối xử chân thành, chăm sóc chu đáo, thẳng thắn và hạn chế khoảng cách cấp bậc. Phục vụ khách hàng bằng sự đồng cảm sâu sắc và lắng nghe thấu hiểu từ trái tim.</p>
+      
+      <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--gold);margin-right:6px;"></i> Hành vi ứng xử bắt buộc:</div>
+      <div class="behave-list">
+        <div class="behave-card" style="border-left-color: #f43f5e;">
+          <i class="fa-solid fa-circle-check" style="color:#f43f5e;"></i>
+          <p>Chủ động hỗ trợ, gánh vác công việc khi đồng đội ở quầy khác bị quá tải.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: #f43f5e;">
+          <i class="fa-solid fa-circle-check" style="color:#f43f5e;"></i>
+          <p>Góp ý trực tiếp thẳng thắn trên tinh thần xây dựng, cầu thị và tôn trọng nhau.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: #f43f5e;">
+          <i class="fa-solid fa-circle-check" style="color:#f43f5e;"></i>
+          <p><strong>Luôn phản hồi thông tin ngay khi nhận được</strong>, tuyệt đối không làm ngơ, không phản hồi.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: #f43f5e;">
+          <i class="fa-solid fa-circle-check" style="color:#f43f5e;"></i>
+          <p>Tận tâm chia sẻ kiến thức, kiên nhẫn dìu dắt nhân sự mới hòa nhập tốt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 11: 5. TRUYỀN THỐNG TƯƠI MỚI ─── -->
+  <div class="slide bg-slate" id="s11">
+    <div class="slide-inner">
+      <div class="slide-tag gold"><i class="fa-solid fa-hands-holding"></i> Giá Trị 5 Tươi</div>
+      <h2 class="slide-title">5. Truyền thống TƯƠI MỚI</h2>
+      <p class="slide-subtitle" style="margin-bottom: 20px;"><strong>Định nghĩa:</strong> Kế thừa và thổi bùng sức sống mới vào các giá trị văn hóa nghệ thuật và nhân văn lâu đời của địa phương thông qua thiết kế sản phẩm sáng tạo và trưng bày mộc mạc tại không gian quán.</p>
+      
+      <div style="font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;"><i class="fa-solid fa-triangle-exclamation" style="color:var(--gold);margin-right:6px;"></i> Hành vi ứng xử bắt buộc:</div>
+      <div class="behave-list">
+        <div class="behave-card" style="border-left-color: #a78bfa;">
+          <i class="fa-solid fa-circle-check" style="color:#a78bfa;"></i>
+          <p>Trân trọng, giữ gìn và bảo vệ các ly gốm truyền thống Thanh Hà, đồ gỗ cổ.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: #a78bfa;">
+          <i class="fa-solid fa-circle-check" style="color:#a78bfa;"></i>
+          <p>Tự tin, chủ động giới thiệu câu chuyện lịch sử thương hiệu Trình khi khách tò mò.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: #a78bfa;">
+          <i class="fa-solid fa-circle-check" style="color:#a78bfa;"></i>
+          <p>Tích cực đóng góp ý tưởng để làm mới trải nghiệm văn hóa địa phương hằng tháng.</p>
+        </div>
+        <div class="behave-card" style="border-left-color: #a78bfa;">
+          <i class="fa-solid fa-circle-check" style="color:#a78bfa;"></i>
+          <p>Tham gia nhiệt huyết các hoạt động lễ hội, truyền thông văn hóa truyền thống của quán.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 12: CHUỖI CỬA HÀNG ─── -->
+  <div class="slide bg-slate" id="s12">
     <div class="slide-inner">
       <div class="slide-tag green"><i class="fa-solid fa-map-location-dot"></i> Chuỗi Cơ Sở</div>
       <h2 class="slide-title">Chuỗi 10+ Cửa Hàng &amp; Điểm Bán</h2>
@@ -741,8 +1002,293 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 7: SƠ ĐỒ TỔ CHỨC ─── -->
-  <div class="slide bg-dark" id="s7">
+  <!-- ─── SLIDE 13: 5 TRỤ CỘT VĂN HÓA ─── -->
+  <div class="slide bg-dark" id="s13">
+    <div class="slide-inner">
+      <div class="slide-tag green"><i class="fa-solid fa-heart"></i> Bản Sắc Thương Hiệu</div>
+      <h2 class="slide-title">5 Trụ Cột Văn Hóa Nhà Trình</h2>
+      <p class="slide-subtitle">Văn hóa của Trình mộc mạc, gần gũi nhưng cực kỳ chuyên nghiệp và tử tế.</p>
+      
+      <style>
+        .culture-grid-s {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 12px;
+          margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+          .culture-grid-s {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+          }
+        }
+        @media (max-width: 480px) {
+          .culture-grid-s {
+            grid-template-columns: 1fr;
+            gap: 8px;
+          }
+        }
+        .culture-card-s {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 14px;
+          padding: 16px 12px;
+          text-align: center;
+          transition: all 0.3s ease;
+        }
+        .culture-card-s:hover {
+          transform: translateY(-4px);
+          border-color: var(--blue);
+          background: rgba(255, 255, 255, 0.08);
+        }
+        .culture-card-s i {
+          font-size: 24px;
+          color: var(--blue);
+          margin-bottom: 10px;
+        }
+        .culture-card-s h4 {
+          font-size: 14px;
+          font-weight: 800;
+          color: #fff;
+          margin-bottom: 6px;
+        }
+        .culture-card-s p {
+          font-size: 11px;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.4;
+        }
+      </style>
+      
+      <div class="culture-grid-s">
+        <div class="culture-card-s">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <h4>Tử Tế</h4>
+          <p>Làm việc từ tâm sạch sẽ và chân thành, từ ly nước cho khách đến đối đãi thật thà với đồng đội.</p>
+        </div>
+        <div class="culture-card-s">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <h4>Kỷ Cương</h4>
+          <p>Giờ giấc nghiêm chỉnh, chuẩn định lượng 100%, bảo vệ nề nếp nhà Trình như giữ lửa gian bếp.</p>
+        </div>
+        <div class="culture-card-s">
+          <i class="fa-solid fa-people-roof"></i>
+          <h4>Tình Thương</h4>
+          <p>Gắn kết coi đồng ca là anh em ruột thịt, sẵn sàng hỗ trợ, gánh vác cùng nhau dưới một mái nhà.</p>
+        </div>
+        <div class="culture-card-s">
+          <i class="fa-solid fa-circle-check"></i>
+          <h4>Trách Nhiệm</h4>
+          <p>Làm đến nơi đến chốn, không đùn đẩy né tránh, dám nhận lỗi khi có sai sót để cùng tiến bộ.</p>
+        </div>
+        <div class="culture-card-s">
+          <i class="fa-solid fa-lightbulb"></i>
+          <h4>Linh Hoạt</h4>
+          <p>Ứng biến nhanh nhạy, không rập khuôn cứng nhắc, áp dụng công nghệ và AI để tối ưu hiệu quả.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 14: NGUYÊN TẮC LÀM VIỆC ─── -->
+  <div class="slide bg-blue" id="s14">
+    <div class="slide-inner">
+      <div class="slide-tag" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff"><i class="fa-solid fa-circle-info"></i> Nguyên Tắc Làm Việc</div>
+      <h2 class="slide-title">Nguyên Tắc Giao Tiếp &amp; Họp Hành</h2>
+      <p class="slide-subtitle">Các quy định chuẩn mực để phối hợp công việc trơn tru và chuyên nghiệp.</p>
+      
+      <style>
+        .rules-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+        }
+        @media (max-width: 768px) {
+          .rules-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+        }
+      </style>
+      
+      <div class="rules-grid">
+        <div class="glass-card" style="border-top: 3px solid var(--gold);">
+          <h3><i class="fa-solid fa-comments"></i> 1. Kênh Giao Tiếp &amp; SLA</h3>
+          <p style="font-size: 13px; margin-top: 6px;">Trao đổi công việc chính thức trên Zalo nhóm "Nhóm Tát" và Odoo. Cam kết **phản hồi trong 15 phút** trong ca trực và tối đa 2 giờ đối với việc chung.</p>
+        </div>
+        <div class="glass-card" style="border-top: 3px solid #10B981;">
+          <h3><i class="fa-solid fa-users-rectangle"></i> 2. Nguyên Tắc Họp Hành</h3>
+          <p style="font-size: 13px; margin-top: 6px;">Phải chuẩn bị tài liệu trước 24 giờ. Luôn có biên bản họp (Minutes Taker) và phân công rõ **Người chịu trách nhiệm (Assignee), Deadline và Chỉ số KPI**.</p>
+        </div>
+        <div class="glass-card" style="border-top: 3px solid #f43f5e;">
+          <h3><i class="fa-solid fa-reply-all"></i> 3. Văn Hóa Phản Hồi</h3>
+          <p style="font-size: 13px; margin-top: 6px;">Feedback tập trung cải tiến công việc, không công kích cá nhân. **Tuyệt đối không làm ngơ khi nhận thông tin**, bắt buộc phải tương tác/phản hồi ngay khi xem tin nhắn.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 15: BẢNG NÊN & TRÁNH LÀM ─── -->
+  <div class="slide bg-slate" id="s15">
+    <div class="slide-inner">
+      <div class="slide-tag green"><i class="fa-solid fa-scale-unbalanced"></i> Do's &amp; Don'ts</div>
+      <h2 class="slide-title">Quy Tắc Ứng Xử Tại Quán</h2>
+      <p class="slide-subtitle">Các hành vi Nên thực hiện và Tuyệt đối Tránh để gìn giữ văn hóa tốt đẹp của Nhà Trình.</p>
+      
+      <style>
+        .dos-donts-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+        @media (max-width: 640px) {
+          .dos-donts-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+        }
+        .dd-box {
+          padding: 20px;
+          border-radius: 16px;
+          backdrop-filter: blur(8px);
+        }
+        .dd-box.dos {
+          background: rgba(16, 185, 129, 0.08);
+          border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .dd-box.donts {
+          background: rgba(244, 63, 94, 0.08);
+          border: 1px solid rgba(244, 63, 94, 0.2);
+        }
+        .dd-box h3 {
+          font-size: 16px;
+          font-weight: 800;
+          margin-bottom: 12px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .dd-box.dos h3 { color: #34d399; }
+        .dd-box.donts h3 { color: #f43f5e; }
+        .dd-list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .dd-list li {
+          font-size: 13px;
+          line-height: 1.55;
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        .dd-box.dos li { color: rgba(255, 255, 255, 0.85); }
+        .dd-box.donts li { color: rgba(255, 255, 255, 0.85); }
+        .dd-box.dos li i { color: #34d399; margin-top: 3px; }
+        .dd-box.donts li i { color: #f43f5e; margin-top: 3px; }
+      </style>
+      
+      <div class="dos-donts-grid">
+        <div class="dd-box dos">
+          <h3><i class="fa-solid fa-circle-check"></i> 🟢 NÊN LÀM (DO'S)</h3>
+          <ul class="dd-list">
+            <li><i class="fa-solid fa-check"></i> Chủ động dọn dẹp vệ sinh khi thấy dơ bẩn.</li>
+            <li><i class="fa-solid fa-check"></i> Hỗ trợ đồng đội hết mình khi ca quầy quá tải.</li>
+            <li><i class="fa-solid fa-check"></i> Mở lời cười tươi chào đón bà con chân thành.</li>
+            <li><i class="fa-solid fa-check"></i> Báo cáo ngay khi gặp sự cố ngoài tầm giải quyết.</li>
+          </ul>
+        </div>
+        <div class="dd-box donts">
+          <h3><i class="fa-solid fa-circle-xmark"></i> 🔴 TRÁNH LÀM (DON'TS)</h3>
+          <ul class="dd-list">
+            <li><i class="fa-solid fa-xmark"></i> Tụ tập nói xấu nội bộ, gây chia rẽ tinh thần đồng ca.</li>
+            <li><i class="fa-solid fa-xmark"></i> Sử dụng điện thoại làm việc riêng trong suốt ca trực.</li>
+            <li><i class="fa-solid fa-xmark"></i> Trốn tránh trách nhiệm hoặc đổ lỗi khi làm sai sót.</li>
+            <li><i class="fa-solid fa-xmark"></i> Đi làm trễ ca trực mà không có lý do báo trước 2 giờ.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 16: SỔ TAY HÀNH CHÍNH NHÂN SỰ ─── -->
+  <div class="slide bg-navy" id="s16">
+    <div class="slide-inner">
+      <div class="slide-tag gold"><i class="fa-solid fa-file-invoice"></i> Quy Định Nội Bộ</div>
+      <h2 class="slide-title">Sổ Tay Hành Chính &amp; Nhân Sự</h2>
+      <p class="slide-subtitle">Các quy chế hành chính cơ bản giúp hệ thống vận hành trật tự và công bằng.</p>
+      
+      <style>
+        .hr-grid-s {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 14px;
+        }
+        @media (max-width: 768px) {
+          .hr-grid-s {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+        }
+        @media (max-width: 480px) {
+          .hr-grid-s {
+            grid-template-columns: 1fr;
+            gap: 8px;
+          }
+        }
+        .hr-card-s {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          padding: 14px;
+        }
+        .hr-card-s h4 {
+          font-size: 13.5px;
+          font-weight: 800;
+          color: var(--blue);
+          margin-bottom: 6px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        .hr-card-s p {
+          font-size: 11.5px;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.45;
+        }
+      </style>
+      
+      <div class="hr-grid-s">
+        <div class="hr-card-s">
+          <h4><i class="fa-solid fa-clock"></i> Giờ làm &amp; Chấm công</h4>
+          <p>Chấm công qua FaceID / App Odoo trước ca trực 10 phút. Làm việc đúng theo phân bổ ca làm.</p>
+        </div>
+        <div class="hr-card-s">
+          <h4><i class="fa-solid fa-calendar-minus"></i> Quy định nghỉ phép</h4>
+          <p>Xin nghỉ phép qua Odoo trước 3 ngày đối với phép năm, hoặc ít nhất 24 giờ cho việc đột xuất.</p>
+        </div>
+        <div class="hr-card-s">
+          <h4><i class="fa-solid fa-money-check-dollar"></i> Lương &amp; Thưởng</h4>
+          <p>Thanh toán lương vào ngày 10 hằng tháng. Bao gồm lương cứng, phụ cấp ca và thưởng hiệu suất KPI.</p>
+        </div>
+        <div class="hr-card-s">
+          <h4><i class="fa-solid fa-handshake"></i> Hợp đồng lao động</h4>
+          <p>Ký cam kết online ngay khi nhận việc và ký hợp đồng chính thức sau thời gian thử việc đạt yêu cầu.</p>
+        </div>
+        <div class="hr-card-s">
+          <h4><i class="fa-solid fa-umbrella-beach"></i> Bảo hiểm &amp; Phúc lợi</h4>
+          <p>Hưởng chế độ BHXH đầy đủ, hỗ trợ cơm ca trực, kiểm tra sức khỏe định kỳ và tham gia teambuilding.</p>
+        </div>
+        <div class="hr-card-s">
+          <h4><i class="fa-solid fa-shield-halved"></i> Bảo mật thông tin</h4>
+          <p>Bảo mật tuyệt đối công thức pha chế cốt lõi của Trình, thông tin tài chính và dữ liệu khách hàng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 17: SƠ ĐỒ TỔ CHỨC ─── -->
+  <div class="slide bg-dark" id="s17">
     <div class="slide-inner">
       <div class="slide-tag"><i class="fa-solid fa-sitemap"></i> Cơ Cấu Tổ Chức</div>
       <h2 class="slide-title">Sơ Đồ Tổ Chức Nhà Trình</h2>
@@ -793,8 +1339,8 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 8: 30 NGÀY HÀNH TRÌNH ─── -->
-  <div class="slide bg-blue" id="s8">
+  <!-- ─── SLIDE 18: 30 NGÀY HÀNH TRÌNH ─── -->
+  <div class="slide bg-blue" id="s18">
     <div class="slide-inner">
       <div class="slide-tag" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff"><i class="fa-solid fa-route"></i> Lộ Trình Hội Nhập</div>
       <h2 class="slide-title">30 Ngày Đầu Của Bạn</h2>
@@ -852,8 +1398,8 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 9: QUY TRÌNH LÀM VIỆC ─── -->
-  <div class="slide bg-slate" id="s9">
+  <!-- ─── SLIDE 19: QUY TRÌNH LÀM VIỆC ─── -->
+  <div class="slide bg-slate" id="s19">
     <div class="slide-inner">
       <div class="slide-tag"><i class="fa-solid fa-diagram-project"></i> Quy Trình MKT</div>
       <h2 class="slide-title">Quy Trình Làm Việc Hằng Ngày</h2>
@@ -898,8 +1444,8 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 10: CHECKLIST ─── -->
-  <div class="slide bg-navy" id="s10">
+  <!-- ─── SLIDE 20: CHECKLIST ─── -->
+  <div class="slide bg-navy" id="s20">
     <div class="slide-inner">
       <div class="slide-tag green"><i class="fa-solid fa-list-check"></i> Checklist Hội Nhập</div>
       <h2 class="slide-title">Đo Lường Tiến Độ</h2>
@@ -942,7 +1488,7 @@
         </div>
       </div>
       <div style="text-align:right;margin-top:14px">
-        <button onclick="goTo(10)" id="sl-next-btn"
+        <button onclick="goTo(20)" id="sl-next-btn"
           style="padding:10px 24px;border-radius:50px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;opacity:.4;pointer-events:none;transition:all .3s ease"
           disabled>
           Tiếp theo: Ký Cam Kết <i class="fa-solid fa-arrow-right"></i>
@@ -951,8 +1497,8 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 11: FORM KÝ CAM KẾT ─── -->
-  <div class="slide bg-coffee" id="s11">
+  <!-- ─── SLIDE 21: FORM KÝ CAM KẾT ─── -->
+  <div class="slide bg-coffee" id="s21">
     <div class="form-slide">
       <div class="slide-tag gold" style="margin-bottom:16px"><i class="fa-solid fa-feather-pointed"></i> Ký Cam Kết Hội Nhập</div>
       <h2 class="slide-title" style="font-size:30px;margin-bottom:8px">Bạn Đã Sẵn Sàng!</h2>
@@ -1028,7 +1574,7 @@
 
 <!-- ═══ JAVASCRIPT ═══ -->
 <script>
-  const TOTAL = 11;
+  const TOTAL = 21;
   let current = 0;
 
   // ── Build dots ──
