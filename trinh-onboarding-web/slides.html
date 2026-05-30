@@ -453,6 +453,40 @@
       .slide-title { font-size:26px; }
       .stores-grid { grid-template-columns:1fr 1fr; }
     }
+
+    /* ═══ PRINT TO PDF OVERRIDES ═══ */
+    @media print {
+      body, html {
+        height: auto !important;
+        overflow: visible !important;
+        background: #0a1a2e !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .top-bar, .dots, .nav-btn, .key-hint {
+        display: none !important;
+      }
+      .deck {
+        height: auto !important;
+        overflow: visible !important;
+      }
+      .slide {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: 100vh !important;
+        opacity: 1 !important;
+        transform: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        display: flex !important;
+        visibility: visible !important;
+        pointer-events: none !important;
+        overflow: hidden !important;
+        background: #0a1a2e !important;
+        padding: 40px 32px !important;
+      }
+    }
   </style>
 </head>
 <body>
