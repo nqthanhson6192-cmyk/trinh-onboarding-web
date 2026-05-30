@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <title>Trình Cà Phê | Hành Trình Hội Nhập 2025</title>
+  <title>Trình Cà Phê | Hành Trình Hội Nhập 2026</title>
   <meta name="description" content="Bộ slide hội nhập nhân sự chính thức của Trình Cà Phê. Sống tươi mỗi ngày qua tách cà phê.">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -243,7 +243,7 @@
       background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
       transition:transform .3s ease;
     }
-    .pillar:hover { transform:translateY(-6px); }
+    .pillar:hover { transform:transform .3s ease; transform:translateY(-6px); }
     .pillar .pi { font-size:32px; margin-bottom:12px; }
     .pillar h4 { font-size:14px; font-weight:800; color:#fff; margin-bottom:8px; }
     .pillar p  { font-size:12.5px; color:rgba(255,255,255,.65); line-height:1.55; }
@@ -470,7 +470,7 @@
       <i class="fa-solid fa-house"></i> Cổng Hội Nhập
     </a>
     <span style="color: rgba(255,255,255,.15);">|</span>
-    <div class="slide-counter"><span id="cur">1</span> / <span id="tot">10</span></div>
+    <div class="slide-counter"><span id="cur">1</span> / <span id="tot">11</span></div>
   </div>
 </div>
 
@@ -485,7 +485,7 @@
     <h1>Chào Mừng Đến<br>Với <span>Nhà Trình</span></h1>
     <div class="cover-sub">"Sống tươi mỗi ngày qua tách cà phê"</div>
     <div class="cover-chips">
-      <span class="chip"><i class="fa-solid fa-calendar-check"></i> Onboarding 2025</span>
+      <span class="chip"><i class="fa-solid fa-calendar-check"></i> Onboarding 2026</span>
       <span class="chip"><i class="fa-solid fa-mug-hot"></i> Trình Cà Phê</span>
       <span class="chip"><i class="fa-solid fa-map-location-dot"></i> Đà Nẵng · Hội An</span>
     </div>
@@ -504,11 +504,11 @@
         <div>
           <div class="glass-card" style="margin-bottom:16px;">
             <h3><i class="fa-solid fa-seedling"></i> Khởi Đầu</h3>
-            <p>Trình Cà Phê ra đời từ tình yêu với hạt cà phê Việt Nam và hương vị bơ sáp Krông Năng nguyên chất. Từ một cửa hàng nhỏ, Trình đã phát triển thành chuỗi 8 cơ sở trải dài Đà Nẵng và Hội An.</p>
+            <p>Trình Cà Phê ra đời từ tình yêu với hạt cà phê Việt Nam và hương vị bơ sáp Krông Năng đặc sản. Từ một cửa hàng nhỏ mộc mạc, Trình đã vươn mình mạnh mẽ thành chuỗi hơn 10 cửa hàng và điểm phân phối rộng khắp Đà Nẵng, Hội An.</p>
           </div>
           <div class="glass-card">
             <h3><i class="fa-solid fa-leaf"></i> Triết Lý "5 Tươi"</h3>
-            <p>Tươi nguyên liệu — Tươi cảm xúc — Tươi không gian — Tươi sáng tạo — Tươi nhân sự. Mỗi ngày ở Trình là một ngày đáng sống.</p>
+            <p>Món uống tươi ngon — Không gian tươi xanh — Bầu không khí tươi vui — Tình người tươi tắn — Truyền thống tươi mới. Đây là trái tim, mạch máu và hệ thống ứng xử cốt lõi của mỗi thành viên Nhà Trình.</p>
           </div>
         </div>
         <div class="glass-card" style="display:flex;align-items:center;justify-content:center;min-height:200px;">
@@ -518,8 +518,110 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 3: VISION / MISSION ─── -->
-  <div class="slide bg-dark" id="s3">
+  <!-- ─── SLIDE 3: TRÌNH QUA NHỮNG CON SỐ (NEW) ─── -->
+  <div class="slide bg-green" id="s3">
+    <div class="slide-inner">
+      <div class="slide-tag gold"><i class="fa-solid fa-chart-simple"></i> Quy Mô Phát Triển</div>
+      <h2 class="slide-title">Trình Qua Những Con Số</h2>
+      <p class="slide-subtitle">Những cột mốc tự hào khẳng định vị thế thương hiệu Trình Cà Phê.</p>
+      
+      <style>
+        .slide-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+          margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+          .slide-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+        }
+        @media (max-width: 480px) {
+          .slide-stats-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+        }
+        .slide-stat-card {
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 16px;
+          padding: 20px 16px;
+          text-align: center;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(8px);
+        }
+        .slide-stat-card:hover {
+          transform: translateY(-4px);
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(223, 183, 108, 0.4);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .slide-stat-icon {
+          font-size: 24px;
+          color: var(--gold);
+          margin-bottom: 8px;
+        }
+        .slide-stat-num {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 900;
+          font-size: clamp(24px, 4vw, 36px);
+          color: #fff;
+          margin-bottom: 6px;
+          line-height: 1.1;
+        }
+        .slide-stat-text {
+          font-size: 12.5px;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.45;
+        }
+      </style>
+      
+      <div class="slide-stats-grid">
+        <!-- Stat 1 -->
+        <div class="slide-stat-card">
+          <div class="slide-stat-icon"><i class="fa-solid fa-store"></i></div>
+          <div class="slide-stat-num">10+</div>
+          <div class="slide-stat-text">Cửa hàng tại Đà Nẵng, Hội An & điểm đối tác lớn như Lotte Mart, Hanigo...</div>
+        </div>
+        <!-- Stat 2 -->
+        <div class="slide-stat-card">
+          <div class="slide-stat-icon"><i class="fa-solid fa-newspaper"></i></div>
+          <div class="slide-stat-num">50+</div>
+          <div class="slide-stat-text">Kênh báo chí & trang thông tin uy tín trong và ngoài nước đưa tin</div>
+        </div>
+        <!-- Stat 3 -->
+        <div class="slide-stat-card">
+          <div class="slide-stat-icon"><i class="fa-solid fa-mug-hot"></i></div>
+          <div class="slide-stat-num">300K+</div>
+          <div class="slide-stat-text">Ly cà phê bơ đặc sản thơm ngon phục vụ bà con muôn nơi</div>
+        </div>
+        <!-- Stat 4 -->
+        <div class="slide-stat-card">
+          <div class="slide-stat-icon"><i class="fa-solid fa-users"></i></div>
+          <div class="slide-stat-num">100+</div>
+          <div class="slide-stat-text">Nhân sự có chuyên môn, tận tâm phục vụ và gắn kết bền chặt</div>
+        </div>
+        <!-- Stat 5 -->
+        <div class="slide-stat-card">
+          <div class="slide-stat-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="slide-stat-num">4.9/5</div>
+          <div class="slide-stat-text">Đánh giá xuất sắc từ bà con và du khách trên Google & Tripadvisor</div>
+        </div>
+        <!-- Stat 6 -->
+        <div class="slide-stat-card">
+          <div class="slide-stat-icon"><i class="fa-solid fa-seedling"></i></div>
+          <div class="slide-stat-num">120K m²</div>
+          <div class="slide-stat-text">Diện tích nông trại Fine Robusta, Arabica, bơ sáp tự nhiên Đắk Lắk</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 4: VISION / MISSION ─── -->
+  <div class="slide bg-dark" id="s4">
     <div class="slide-inner">
       <div class="slide-tag"><i class="fa-solid fa-bullseye"></i> Định Hướng Phát Triển</div>
       <h2 class="slide-title">Tầm Nhìn &amp; Sứ Mệnh</h2>
@@ -549,91 +651,98 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 4: TRIẾT LÝ SLOGAN ─── -->
-  <div class="slide bg-navy" id="s4">
+  <!-- ─── SLIDE 5: TRIẾT LÝ SLOGAN ─── -->
+  <div class="slide bg-navy" id="s5">
     <div class="slide-inner" style="text-align:center">
       <div class="slide-tag gold"><i class="fa-solid fa-quote-left"></i> Triết Lý Thương Hiệu</div>
       <div class="philosophy-big">"Sống tươi mỗi ngày<br>qua tách cà phê"</div>
       <p class="slide-subtitle">Từ những hạt cà phê tươi xanh tới nụ cười tươi vui và nguồn năng lượng sống từng ngày được nuôi dưỡng. Giống như cây tràn đầy nhựa sống, Trình mong bà con cũng sẽ tràn đầy sức sống với tình yêu và những điều bình dị nhỏ bé mỗi ngày.</p>
       <div class="five-tuoi">
-        <div class="tuoi-item"><div class="ico">🥑</div><span>Tươi Nguyên Liệu</span></div>
-        <div class="tuoi-item"><div class="ico">😊</div><span>Tươi Cảm Xúc</span></div>
-        <div class="tuoi-item"><div class="ico">🌿</div><span>Tươi Không Gian</span></div>
-        <div class="tuoi-item"><div class="ico">💡</div><span>Tươi Sáng Tạo</span></div>
-        <div class="tuoi-item"><div class="ico">🤝</div><span>Tươi Nhân Sự</span></div>
+        <div class="tuoi-item"><div class="ico">🥑</div><span>Món uống TƯƠI NGON</span></div>
+        <div class="tuoi-item"><div class="ico">🌿</div><span>Không gian TƯƠI XANH</span></div>
+        <div class="tuoi-item"><div class="ico">😊</div><span>Bầu không khí TƯƠI VUI</span></div>
+        <div class="tuoi-item"><div class="ico">🤝</div><span>Tình người TƯƠI TẮN</span></div>
+        <div class="tuoi-item"><div class="ico">💡</div><span>Truyền thống TƯƠI MỚI</span></div>
       </div>
     </div>
   </div>
 
-  <!-- ─── SLIDE 5: CHUỖI CỬA HÀNG ─── -->
-  <div class="slide bg-slate" id="s5">
+  <!-- ─── SLIDE 6: CHUỖI CỬA HÀNG ─── -->
+  <div class="slide bg-slate" id="s6">
     <div class="slide-inner">
       <div class="slide-tag green"><i class="fa-solid fa-map-location-dot"></i> Chuỗi Cơ Sở</div>
-      <h2 class="slide-title">8 Địa Điểm Nhà Trình</h2>
+      <h2 class="slide-title">Chuỗi 10+ Cửa Hàng &amp; Điểm Bán</h2>
       <p class="slide-subtitle" style="margin-bottom:20px">Từ trung tâm Đà Nẵng đến phố cổ Hội An — Trình hiện diện ở khắp nơi.</p>
       <div class="stores-grid">
         <div class="store-card">
-          <div class="sn">CS 01 · 24/7</div>
-          <h4>Nguyễn Hữu Thọ</h4>
-          <p>111 Nguyễn Hữu Thọ, Hoà Cường, Đà Nẵng</p>
+          <div class="sn">CS 01 · NHÀ RANG · 24/7</div>
+          <h4>Trình Nguyễn Hữu Thọ</h4>
+          <p>111 Nguyễn Hữu Thọ, Hoà Cường, Hải Châu, Đà Nẵng</p>
           <div class="hours">⏰ Mở cửa 24/7</div>
-          <a href="https://maps.google.com/?q=111+Nguy%E1%BB%85n+H%E1%BB%AFu+Th%E1%BB%8D,+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
+          <a href="https://www.google.com/maps/place/Tr%C3%ACnh+C%C3%A0+Ph%C3%AA+-+111+Nguy%E1%BB%85n+H%E1%BB%AFu+Th%E1%BB%8D/@16.0513202,108.2068029,17z" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
         </div>
         <div class="store-card">
-          <div class="sn">CS 02 · MỚI · 24/7</div>
+          <div class="sn">CS 02 · SÂN VƯỜN · 24/7</div>
           <h4>Trình VTV8</h4>
-          <p>258 Bạch Đằng, Hải Châu, Đà Nẵng</p>
+          <p>258 Bạch Đằng, Phước Ninh, Hải Châu, Đà Nẵng</p>
           <div class="hours">⏰ Mở cửa 24/7</div>
-          <a href="https://maps.google.com/?q=258+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng,+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
+          <a href="https://maps.google.com/?q=258+B%E1%BA%A3ch+%C4%90%E1%BA%B1ng,+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
         </div>
         <div class="store-card">
-          <div class="sn">CS 03</div>
-          <h4>Phạm Hồng Thái</h4>
+          <div class="sn">CS 03 · XƯỞNG RANG</div>
+          <h4>Trình Phạm Hồng Thái</h4>
           <p>25 Phạm Hồng Thái, Hải Châu, Đà Nẵng</p>
           <div class="hours">⏰ 6:30 — 01:00</div>
-          <a href="https://maps.google.com/?q=25+Ph%E1%BA%A1m+H%E1%BB%93ng+Th%C3%A1i,+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
+          <a href="http://google.com/maps/place/Tr%C3%ACnh+c%C3%A0+ph%C3%AA/data=!4m2!3m1!1s0x0:0xcd8455fecf74c490" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
         </div>
         <div class="store-card">
-          <div class="sn">CS 04</div>
-          <h4>Phố Đi Bộ</h4>
-          <p>Phố đi bộ Bạch Đằng, Phước Ninh, Đà Nẵng</p>
+          <div class="sn">CS 04 · COFFEE STAND</div>
+          <h4>Trình Phố Đi Bộ</h4>
+          <p>Phố đi bộ Bạch Đằng, Phước Ninh, Hải Châu, Đà Nẵng</p>
           <div class="hours">⏰ 4:00 — 01:00</div>
           <a href="https://maps.app.goo.gl/QUqwqe9B89ywxDQXA" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
         </div>
         <div class="store-card">
-          <div class="sn">CS 05</div>
-          <h4>Chợ Hàn</h4>
-          <p>Chợ Hàn — Cổng Bạch Đằng, Đà Nẵng</p>
+          <div class="sn">CS 05 · COFFEE STAND</div>
+          <h4>Trình Chợ Hàn</h4>
+          <p>Chợ Hàn — Cổng Bạch Đằng, Hải Châu, Đà Nẵng</p>
           <div class="hours">⏰ 7:00 — 18:30</div>
           <a href="https://maps.app.goo.gl/SMxdXcA9NPW2gi8Y9" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
         </div>
         <div class="store-card">
-          <div class="sn">CS 06</div>
-          <h4>Cá Chép Hoá Rồng</h4>
-          <p>Tượng Cá Chép Hoá Rồng, Đà Nẵng</p>
+          <div class="sn">CS 06 · ICE CREAM</div>
+          <h4>Trình Cá Chép Hoá Rồng</h4>
+          <p>Tượng Cá Chép Hoá Rồng, Trần Hưng Đạo, Sơn Trà, Đà Nẵng</p>
           <div class="hours">⏰ 7:00 — 23:00</div>
           <a href="https://maps.app.goo.gl/rJfvzATJgXDaR1GHA" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
         </div>
         <div class="store-card">
-          <div class="sn">CS 07</div>
-          <h4>Bảo Tàng Đà Nẵng</h4>
+          <div class="sn">CS 07 · BẢO TÀNG</div>
+          <h4>Trình Bảo Tàng</h4>
           <p>31 Trần Phú, Hải Châu, Đà Nẵng</p>
           <div class="hours">⏰ 8:00 — 17:00</div>
           <a href="https://maps.google.com/?q=31+Tr%E1%BA%A7n+Ph%C3%BA,+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
         </div>
         <div class="store-card">
-          <div class="sn">CS 08 · HỘI AN</div>
-          <h4>Trình Hội An</h4>
-          <p>200 Nguyễn Tri Phương rẽ trái, Hội An</p>
+          <div class="sn">CS 08 · BISTRO · HỘI AN</div>
+          <h4>Trình Bistro Hội An</h4>
+          <p>200 Nguyễn Tri Phương rẽ trái, Cẩm Nam, Hội An</p>
           <div class="hours">⏰ 6:30 — 22:30</div>
           <a href="https://maps.app.goo.gl/F4buiHsQX4KXcnzd9" target="_blank"><i class="fa-solid fa-location-dot"></i> Bản đồ</a>
+        </div>
+        <div class="store-card" style="background: rgba(223,183,108,.08); border-color: rgba(223,183,108,.25);">
+          <div class="sn" style="color: var(--gold); font-weight: 800;">ĐỐI TÁC PHÂN PHỐI</div>
+          <h4 style="color: var(--gold);">Lotte Mart &amp; Hanigo</h4>
+          <p>Hệ thống siêu thị lớn, homestay &amp; điểm phân phối cà phê đóng gói quà tặng.</p>
+          <div class="hours">🚀 Phủ sóng Đà Nẵng &amp; Hội An</div>
+          <a href="#" onclick="event.preventDefault(); goTo(2);" style="color: var(--gold);"><i class="fa-solid fa-arrow-pointer"></i> Xem quy mô</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ─── SLIDE 6: SƠ ĐỒ TỔ CHỨC ─── -->
-  <div class="slide bg-dark" id="s6">
+  <!-- ─── SLIDE 7: SƠ ĐỒ TỔ CHỨC ─── -->
+  <div class="slide bg-dark" id="s7">
     <div class="slide-inner">
       <div class="slide-tag"><i class="fa-solid fa-sitemap"></i> Cơ Cấu Tổ Chức</div>
       <h2 class="slide-title">Sơ Đồ Tổ Chức Nhà Trình</h2>
@@ -684,8 +793,8 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 7: 30 NGÀY HÀNH TRÌNH ─── -->
-  <div class="slide bg-blue" id="s7">
+  <!-- ─── SLIDE 8: 30 NGÀY HÀNH TRÌNH ─── -->
+  <div class="slide bg-blue" id="s8">
     <div class="slide-inner">
       <div class="slide-tag" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff"><i class="fa-solid fa-route"></i> Lộ Trình Hội Nhập</div>
       <h2 class="slide-title">30 Ngày Đầu Của Bạn</h2>
@@ -743,8 +852,8 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 8: QUY TRÌNH LÀM VIỆC ─── -->
-  <div class="slide bg-slate" id="s8">
+  <!-- ─── SLIDE 9: QUY TRÌNH LÀM VIỆC ─── -->
+  <div class="slide bg-slate" id="s9">
     <div class="slide-inner">
       <div class="slide-tag"><i class="fa-solid fa-diagram-project"></i> Quy Trình MKT</div>
       <h2 class="slide-title">Quy Trình Làm Việc Hằng Ngày</h2>
@@ -789,8 +898,8 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 9: CHECKLIST ─── -->
-  <div class="slide bg-navy" id="s9">
+  <!-- ─── SLIDE 10: CHECKLIST ─── -->
+  <div class="slide bg-navy" id="s10">
     <div class="slide-inner">
       <div class="slide-tag green"><i class="fa-solid fa-list-check"></i> Checklist Hội Nhập</div>
       <h2 class="slide-title">Đo Lường Tiến Độ</h2>
@@ -805,7 +914,7 @@
       <div class="checklist-slides" id="slide-checklist">
         <div class="cl-item" onclick="toggleCl(this,10)" data-pts="10">
           <div class="cl-box"><i class="fa-solid fa-check"></i></div>
-          <span>Đọc kỹ Branding Platform &amp; hiểu 3 giá trị cốt lõi</span>
+          <span>Đọc kỹ Branding Platform &amp; hiểu 3 giá trị cốt lõi (Tươi - Thật - Tình)</span>
         </div>
         <div class="cl-item" onclick="toggleCl(this,10)" data-pts="10">
           <div class="cl-box"><i class="fa-solid fa-check"></i></div>
@@ -813,11 +922,11 @@
         </div>
         <div class="cl-item" onclick="toggleCl(this,15)" data-pts="15">
           <div class="cl-box"><i class="fa-solid fa-check"></i></div>
-          <span>Thấu hiểu Triết lý "5 Tươi" và các hình ảnh chất liệu thương hiệu</span>
+          <span>Thấu hiểu Triết lý "5 Tươi" và các hành vi ứng xử bắt buộc</span>
         </div>
         <div class="cl-item" onclick="toggleCl(this,15)" data-pts="15">
           <div class="cl-box"><i class="fa-solid fa-check"></i></div>
-          <span>Uống thử bơ &amp; hiểu quy chuẩn 4 sản phẩm signature</span>
+          <span>Uống thử bơ &amp; hiểu quy chuẩn các sản phẩm signature</span>
         </div>
         <div class="cl-item" onclick="toggleCl(this,15)" data-pts="15">
           <div class="cl-box"><i class="fa-solid fa-check"></i></div>
@@ -829,11 +938,11 @@
         </div>
         <div class="cl-item" onclick="toggleCl(this,15)" data-pts="15">
           <div class="cl-box"><i class="fa-solid fa-check"></i></div>
-          <span>Hiểu rõ Tone &amp; Voice và các concept viết bài truyền thông</span>
+          <span>Hiểu rõ các nguyên tắc họp, phản hồi và giao tiếp trong đội ngũ</span>
         </div>
       </div>
       <div style="text-align:right;margin-top:14px">
-        <button onclick="goTo(9)" id="sl-next-btn"
+        <button onclick="goTo(10)" id="sl-next-btn"
           style="padding:10px 24px;border-radius:50px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;opacity:.4;pointer-events:none;transition:all .3s ease"
           disabled>
           Tiếp theo: Ký Cam Kết <i class="fa-solid fa-arrow-right"></i>
@@ -842,8 +951,8 @@
     </div>
   </div>
 
-  <!-- ─── SLIDE 10: FORM KÝ CAM KẾT ─── -->
-  <div class="slide bg-coffee" id="s10">
+  <!-- ─── SLIDE 11: FORM KÝ CAM KẾT ─── -->
+  <div class="slide bg-coffee" id="s11">
     <div class="form-slide">
       <div class="slide-tag gold" style="margin-bottom:16px"><i class="fa-solid fa-feather-pointed"></i> Ký Cam Kết Hội Nhập</div>
       <h2 class="slide-title" style="font-size:30px;margin-bottom:8px">Bạn Đã Sẵn Sàng!</h2>
@@ -919,7 +1028,7 @@
 
 <!-- ═══ JAVASCRIPT ═══ -->
 <script>
-  const TOTAL = 10;
+  const TOTAL = 11;
   let current = 0;
 
   // ── Build dots ──
