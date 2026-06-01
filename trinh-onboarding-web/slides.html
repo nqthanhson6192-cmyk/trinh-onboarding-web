@@ -287,28 +287,322 @@
     .store-card a:hover { color:#fff; }
 
     /* ═══ SLIDE 6: ORG CHART ═══ */
-    .org-tiers { display:flex; flex-direction:column; gap:0; width:100%; }
-    .org-row { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px; padding:10px 0; position:relative; }
-    .org-row:not(:last-child)::after {
-      content:''; position:absolute; bottom:-1px; left:50%; transform:translateX(-50%);
-      width:2px; height:12px; background:rgba(255,255,255,.2);
+    .org-tree-wrapper {
+      width: 100%;
+      margin: 10px auto 0;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(5, 175, 242, 0.08);
+      border-radius: 20px;
+      padding: 16px 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-    .org-card {
-      padding:10px 14px; border-radius:12px; text-align:center; color:#fff; min-width:130px;
-      font-size:12px; font-weight:700;
+    
+    .org-tree-canvas {
+      width: 100%;
+      overflow-x: auto;
+      text-align: center; /* Center inline-block tree */
+      padding: 10px 5px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(5, 175, 242, 0.2) transparent;
     }
-    .org-card.ceo-c {
-      background:linear-gradient(135deg,#1a3a52,#0d2d45);
-      border:2px solid var(--gold);
-      min-width:200px; padding:14px 28px;
-      box-shadow:0 0 30px rgba(223,183,108,.2);
+    .org-tree-canvas::-webkit-scrollbar {
+      height: 6px;
     }
-    .org-card.ceo-c .name { font-size:22px; font-weight:900; display:block; }
-    .org-card.filled-c { background:linear-gradient(135deg,var(--blue),var(--blue-dark)); }
-    .org-card.vacant-c { background:linear-gradient(135deg,#10B981,#047857); }
-    .org-card .role { font-size:9px; letter-spacing:1px; text-transform:uppercase; opacity:.8; display:block; margin-bottom:2px; }
-    .org-tier-label-s { font-size:9px; font-weight:800; color:rgba(255,255,255,.3); text-transform:uppercase; letter-spacing:1.5px; text-align:center; margin-bottom:4px; }
+    .org-tree-canvas::-webkit-scrollbar-thumb {
+      background: rgba(5, 175, 242, 0.15);
+      border-radius: 10px;
+    }
 
+    .org-tree-scroll-hint {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .org-tree-scroll-hint i {
+      animation: bounceHorizontal 1.5s infinite;
+    }
+
+    @keyframes bounceHorizontal {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+
+    .org-tree {
+      display: inline-block; /* Centering pattern */
+      min-width: 1020px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .org-tree ul {
+      padding-top: 16px;
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding-left: 0 !important;
+      margin-bottom: 0 !important;
+      list-style: none !important;
+      list-style-type: none !important;
+    }
+
+    .org-tree li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding-top: 16px;
+      transition: all 0.3s ease;
+      list-style: none !important;
+      list-style-type: none !important;
+      margin: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    /* Connector lines robust resets */
+    .org-tree li::before, .org-tree li::after {
+      content: '' !important;
+      position: absolute;
+      top: 0;
+      right: 50%;
+      border-top: 2px solid rgba(5, 175, 242, 0.15);
+      width: 50%;
+      height: 16px;
+      background: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      transform: none !important;
+    }
+
+    .org-tree li::after {
+      right: auto;
+      left: 50%;
+      border-left: 2px solid rgba(5, 175, 242, 0.15);
+    }
+
+    .org-tree li:only-child::after, .org-tree li:only-child::before {
+      display: none !important;
+    }
+
+    .org-tree li:only-child {
+      padding-top: 0 !important;
+    }
+
+    .org-tree li:first-child::before, .org-tree li:last-child::after {
+      border: 0 none !important;
+    }
+
+    .org-tree li:last-child::before {
+      border-right: 2px solid rgba(5, 175, 242, 0.15) !important;
+      border-radius: 0 6px 0 0 !important;
+    }
+
+    .org-tree li:first-child::after {
+      border-radius: 6px 0 0 0 !important;
+    }
+
+    .org-tree ul::before {
+      content: '' !important;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 2px solid rgba(5, 175, 242, 0.15);
+      width: 0;
+      height: 16px;
+      background: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      transform: none !important;
+    }
+
+    /* Node Cards styling */
+    .org-node-card {
+      background: #ffffff;
+      border: 1px solid rgba(5, 175, 242, 0.08);
+      border-radius: 12px;
+      padding: 8px 8px 6px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      width: 120px;
+      cursor: default;
+      z-index: 2;
+    }
+
+    .org-node-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+    }
+
+    /* Vibrant/Fresh color accents per department */
+    .org-node-card[data-dept="qc"] {
+      border-left: 4px solid #10B981;
+      background: rgba(16, 185, 129, 0.03);
+    }
+    .org-node-card[data-dept="qc"]:hover {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: #10B981;
+    }
+
+    .org-node-card[data-dept="product"] {
+      border-left: 4px solid #dfb76c;
+      background: rgba(223, 183, 108, 0.03);
+    }
+    .org-node-card[data-dept="product"]:hover {
+      background: rgba(223, 183, 108, 0.08);
+      border-color: #dfb76c;
+    }
+
+    .org-node-card[data-dept="ops"] {
+      border-left: 4px solid #05AFF2;
+      background: rgba(5, 175, 242, 0.03);
+    }
+    .org-node-card[data-dept="ops"]:hover {
+      background: rgba(5, 175, 242, 0.08);
+      border-color: #05AFF2;
+    }
+
+    .org-node-card[data-dept="finance"] {
+      border-left: 4px solid #00b0ff;
+      background: rgba(0, 176, 255, 0.03);
+    }
+    .org-node-card[data-dept="finance"]:hover {
+      background: rgba(0, 176, 255, 0.08);
+      border-color: #00b0ff;
+    }
+
+    .org-node-card[data-dept="hr"] {
+      border-left: 4px solid #10B981;
+      background: rgba(16, 185, 129, 0.03);
+    }
+    .org-node-card[data-dept="hr"]:hover {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: #10B981;
+    }
+
+    .org-node-card[data-dept="mkt"] {
+      border-left: 4px solid #ff4081;
+      background: rgba(255, 64, 129, 0.03);
+    }
+    .org-node-card[data-dept="mkt"]:hover {
+      background: rgba(255, 64, 129, 0.08);
+      border-color: #ff4081;
+    }
+
+    /* Vacant node styling */
+    .org-node-card.vacant {
+      border-color: rgba(16, 185, 129, 0.3) !important;
+      background: rgba(16, 185, 129, 0.04) !important;
+    }
+    .org-node-card.vacant:hover {
+      background: rgba(16, 185, 129, 0.1) !important;
+    }
+
+    .org-node-card .role {
+      font-size: 7.5px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #78828a;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 2px;
+      transition: color 0.3s ease;
+    }
+    .org-node-card:hover .role {
+      color: #0d2d45;
+    }
+
+    .org-node-card .name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      color: #3E2F2E;
+      display: block;
+    }
+
+    .org-node-card .tag {
+      display: inline-block;
+      font-size: 7.5px;
+      font-weight: 800;
+      color: #047857;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 1px 4px;
+      border-radius: 20px;
+      margin-top: 4px;
+    }
+
+    /* CEO Card Custom styling - Synchronized with web */
+    .org-node-card.ceo {
+      background: #ffffff !important;
+      border: 1px solid rgba(5, 175, 242, 0.08) !important;
+      border-left: 4px solid #dfb76c !important; /* Gold border-left */
+      color: inherit !important;
+      width: 120px !important;
+      padding: 8px 8px 6px !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+    }
+
+    .org-node-card.ceo:hover {
+      background: rgba(223, 183, 108, 0.05) !important;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.25) !important;
+    }
+
+    .org-node-card.ceo .role {
+      color: #78828a !important;
+      font-size: 7.5px !important;
+    }
+    .org-node-card.ceo .name {
+      color: #3E2F2E !important;
+      font-size: 11px !important;
+    }
+    .org-node-card.ceo .sub {
+      font-size: 7.5px !important;
+      display: block !important;
+      margin-top: 2px !important;
+      color: #dfb76c !important;
+      font-weight: 700 !important;
+    }
+
+    /* Legend */
+    .org-legend {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .org-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 600;
+    }
+
+    .org-legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    .org-legend-dot.filled { background: linear-gradient(135deg, #05AFF2, #037ab0); }
+    .org-legend-dot.vacant { background: linear-gradient(135deg, #10B981, #047857); }
+    .org-legend-dot.ceo { background: #dfb76c; }
+    
     /* ═══ SLIDE 7: TIMELINE ═══ */
     .timeline-slides { display:flex; flex-direction:column; gap:16px; }
     .tl-item {
@@ -1357,64 +1651,235 @@
 
   <!-- ─── SLIDE 17: SƠ ĐỒ TỔ CHỨC ─── -->
   <div class="slide bg-dark" id="s17">
-    <div class="slide-inner">
+    <div class="slide-inner" style="width: 100%; max-width: 1080px; padding: 0 10px;">
       <div class="slide-tag"><i class="fa-solid fa-sitemap"></i> Cơ Cấu Tổ Chức</div>
-      <h2 class="slide-title">Sơ Đồ Tổ Chức Nhà Trình</h2>
-      <p class="slide-subtitle" style="margin-bottom:12px">5 tầng cấp bậc — 6 khối phòng ban — bộ máy vận hành toàn chuỗi.</p>
-      <div class="org-tiers" style="max-height: 480px; overflow-y: auto; padding-right: 6px;">
-        <div class="org-tier-label-s">TẦNG 1 — BAN ĐIỀU HÀNH</div>
-        <div class="org-row">
-          <div class="org-card ceo-c">
-            <span class="role">CEO &amp; Sáng Lập</span>
-            <span class="name">Anh Sơn</span>
-            <span style="font-size:10px; opacity:0.8; display:block; margin-top:2px;">Trình Cà Phê — Đà Nẵng</span>
+      <h2 class="slide-title" style="margin-bottom: 4px;">Sơ Đồ Tổ Chức Nhà Trình</h2>
+      <p class="slide-subtitle" style="margin-bottom: 8px; font-size: 13.5px;">Sơ đồ cơ cấu tổ chức quản lý vận hành phân tầng toàn chuỗi của Trình Cà Phê.</p>
+      
+      <div class="org-tree-wrapper">
+        <!-- Scroll hint -->
+        <div class="org-tree-scroll-hint">
+          <i class="fa-solid fa-angles-left"></i> Vuốt ngang / Rê chuột để xem trọn bộ sơ đồ tổ chức <i class="fa-solid fa-angles-right"></i>
+        </div>
+
+        <div class="org-tree-canvas">
+          <div class="org-tree">
+            <ul>
+              <li>
+                <!-- CEO Card -->
+                <div class="org-node-card org-card-v2 ceo" data-dept="all" id="ceo-card">
+                  <span class="role">CEO &amp; Sáng Lập</span>
+                  <span class="name">Anh Sơn</span>
+                  <span class="sub">Trình Cà Phê — Đà Nẵng</span>
+                </div>
+
+                <ul>
+                  <!-- 1. QC & Training -->
+                  <li>
+                    <div class="org-node-card org-card-v2 vacant" data-dept="qc">
+                      <span class="role">QC &amp; Training</span>
+                      <span class="name">Đang Tuyển</span>
+                      <span class="tag">🟢 Tuyển dụng</span>
+                    </div>
+                  </li>
+
+                  <!-- 2. Head of Product -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="product">
+                      <span class="role">Head of Product</span>
+                      <span class="name">Tân</span>
+                    </div>
+                    <ul>
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="product">
+                          <span class="role">Food Manager</span>
+                          <span class="name">Toàn</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="product">
+                          <span class="role">Barista Manager</span>
+                          <span class="name">Toàn</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- 3. Operation Manager -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="ops">
+                      <span class="role">Operation Manager</span>
+                      <span class="name">Sơn</span>
+                    </div>
+                    <ul>
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="ops">
+                          <span class="role">Quản Lý Vùng</span>
+                          <span class="name">Gấu</span>
+                        </div>
+                        <ul>
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="ops">
+                              <span class="role">Quản lý cửa hàng</span>
+                              <span class="name">Từng CS</span>
+                            </div>
+                            <ul>
+                              <li>
+                                <div class="org-node-card org-card-v2 filled" data-dept="ops">
+                                  <span class="role">Giám sát</span>
+                                  <span class="name">Từng ca</span>
+                                </div>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- 4. Trưởng Kế toán tài chính -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="finance">
+                      <span class="role">Trưởng Kế toán tài chính</span>
+                      <span class="name">Kim Anh</span>
+                    </div>
+                    <ul>
+                      <li>
+                        <div class="org-node-card org-card-v2 vacant" data-dept="finance">
+                          <span class="role">Kế toán trưởng</span>
+                          <span class="name">Đang Tuyển</span>
+                          <span class="tag">🟢 Tuyển dụng</span>
+                        </div>
+                        <ul>
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="finance">
+                              <span class="role">Thu mua &amp; Kho</span>
+                              <span class="name">Nguyện</span>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="finance">
+                              <span class="role">Kế toán Thu Chi</span>
+                              <span class="name">Ngọc Huyền</span>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="finance">
+                              <span class="role">Kế toán thuê ngoài</span>
+                              <span class="name">Oanh</span>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- 5. Trưởng Nhân sự -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="hr">
+                      <span class="role">Trưởng Nhân sự</span>
+                      <span class="name">Thanh Hà</span>
+                    </div>
+                  </li>
+
+                  <!-- 6. Phụ trách Marketing -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                      <span class="role">Phụ trách Marketing</span>
+                      <span class="name">Hương</span>
+                    </div>
+                    <ul>
+                      <!-- Marketing Manager -->
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                          <span class="role">Marketing Manager</span>
+                          <span class="name">Vũ</span>
+                        </div>
+                        <ul>
+                          <!-- Left Column (Marcom) -->
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                              <span class="role">Marcom - MKT executive</span>
+                              <span class="name">Quốc Huy</span>
+                            </div>
+                            <ul>
+                              <li>
+                                <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                                  <span class="role">Copywriter Part-time</span>
+                                  <span class="name">Tú Anh</span>
+                                </div>
+                              </li>
+                            </ul>
+                          </li>
+                          <!-- Right Column (Content) -->
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                              <span class="role">Content Creator Fulltime</span>
+                              <span class="name">Thanh Trúc</span>
+                            </div>
+                            <ul>
+                              <li>
+                                <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                                  <span class="role">Content Creator Part-time</span>
+                                  <span class="name">Mỹ Duyên</span>
+                                </div>
+                                <ul>
+                                  <li>
+                                    <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                                      <span class="role">Content Creator Part-time</span>
+                                      <span class="name">Hạ Vy</span>
+                                    </div>
+                                    <ul>
+                                      <li>
+                                        <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                                          <span class="role">Photography</span>
+                                          <span class="name">Đăng Đại</span>
+                                        </div>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <!-- Sale Marketing Fulltime directly under Phụ trách MKT -->
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                          <span class="role">Sale Marketing Fulltime</span>
+                          <span class="name">Kiều My</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="org-tier-label-s" style="margin-top:10px">TẦNG 2 — TRƯỞNG KHỐI</div>
-        <div class="org-row">
-          <div class="org-card vacant-c"><span class="role">QC &amp; Training</span>Đang Tuyển</div>
-          <div class="org-card filled-c"><span class="role">Head of Product</span>Tân</div>
-          <div class="org-card filled-c"><span class="role">Operation Manager</span>Sơn</div>
-          <div class="org-card filled-c"><span class="role">Trưởng Kế toán tài chính</span>Kim Anh</div>
-          <div class="org-card filled-c"><span class="role">Trưởng Nhân sự</span>Thanh Hà</div>
-          <div class="org-card filled-c"><span class="role">Phụ trách Marketing</span>Hương</div>
+      </div>
+
+      <!-- Legend -->
+      <div class="org-legend">
+        <div class="org-legend-item">
+          <div class="org-legend-dot ceo"></div>
+          <span>Ban Điều Hành</span>
         </div>
-        <div class="org-tier-label-s" style="margin-top:10px">TẦNG 3 — QUẢN LÝ</div>
-        <div class="org-row">
-          <div class="org-card filled-c"><span class="role">Food Manager</span>Toàn</div>
-          <div class="org-card filled-c"><span class="role">Barista Manager</span>Toàn</div>
-          <div class="org-card filled-c"><span class="role">Quản Lý Vùng</span>Gấu</div>
-          <div class="org-card vacant-c"><span class="role">Kế Toán Trưởng</span>Đang Tuyển</div>
-          <div class="org-card filled-c"><span class="role">Marketing Manager</span>Vũ</div>
+        <div class="org-legend-item">
+          <div class="org-legend-dot filled"></div>
+          <span>Đã có nhân sự</span>
         </div>
-        <div class="org-tier-label-s" style="margin-top:10px">TẦNG 4–5 — CHUYÊN VIÊN &amp; THỰC THI</div>
-        <div class="org-row" style="gap: 8px;">
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Quản lý cửa hàng</span>Từng CS</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Thu mua &amp; Kho</span>Nguyện</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Kế toán Thu Chi</span>Ngọc Huyền</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Kế toán thuê ngoài</span>Oanh</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Marcom - MKT exec</span>Quốc Huy</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Content Creator FT</span>Thanh Trúc</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Sale Marketing FT</span>Kiều My</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Giám sát</span>Từng ca</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Copywriter PT</span>Tú Anh</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Content Creator PT</span>Mỹ Duyên</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Content Creator PT</span>Hạ Vy</div>
-          <div class="org-card filled-c" style="min-width: 110px;"><span class="role">Photography</span>Đăng Đại</div>
+        <div class="org-legend-item">
+          <div class="org-legend-dot vacant"></div>
+          <span>Đang tuyển dụng</span>
         </div>
       </div>
-      <div style="display:flex;gap:16px;margin-top:16px;justify-content:center;flex-wrap:wrap;">
-        <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.5)">
-          <div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,#05AFF2,#037ab0)"></div>Đã có nhân sự
-        </div>
-        <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.5)">
-          <div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,#10B981,#047857)"></div>Đang tuyển dụng
-        </div>
-      </div>
+      
     </div>
   </div>
-
-  <!-- ─── SLIDE 18: 30 NGÀY HÀNH TRÌNH ─── -->
+<!-- ─── SLIDE 18: 30 NGÀY HÀNH TRÌNH ─── -->
   <div class="slide bg-blue" id="s18">
     <div class="slide-inner">
       <div class="slide-tag" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff"><i class="fa-solid fa-route"></i> Lộ Trình Hội Nhập</div>
