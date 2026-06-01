@@ -4160,6 +4160,1088 @@
       <style>
         .org-tree-wrapper {
           width: 100%;
+          margin: 20px auto 0;
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(5, 175, 242, 0.08);
+          border-radius: 20px;
+          padding: 24px 16px;
+          box-shadow: var(--shadow-sm);
+        }
+        
+        .org-tree-canvas {
+          width: 100%;
+          overflow-x: auto;
+          padding: 15px 5px;
+          /* Style scrollbar */
+          scrollbar-width: thin;
+          scrollbar-color: rgba(5, 175, 242, 0.2) transparent;
+        }
+        .org-tree-canvas::-webkit-scrollbar {
+          height: 6px;
+        }
+        .org-tree-canvas::-webkit-scrollbar-thumb {
+          background: rgba(5, 175, 242, 0.15);
+          border-radius: 10px;
+        }
+        .org-tree-canvas::-webkit-scrollbar-thumb:hover {
+          background: rgba(223, 183, 108, 0.4);
+        }
+
+        .org-tree-scroll-hint {
+          text-align: center;
+          font-size: 11px;
+          color: var(--text-muted);
+          margin-bottom: 10px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+        }
+
+        .org-tree-scroll-hint i {
+          animation: bounceHorizontal 1.5s infinite;
+        }
+
+        @keyframes bounceHorizontal {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(5px); }
+        }
+
+        .org-tree {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          min-width: 1180px; /* Highly optimized to fit screen without scrolling on standard desktops */
+          margin: 0 auto;
+        }
+
+        .org-tree ul {
+          padding-top: 18px;
+          position: relative;
+          transition: all 0.3s ease;
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          width: 100%;
+          padding-left: 0;
+          margin-bottom: 0;
+          list-style: none;
+        }
+
+        .org-tree li {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+          padding-top: 18px;
+          transition: all 0.3s ease;
+          list-style: none;
+        }
+
+        /* Connector lines */
+        .org-tree li::before, .org-tree li::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 50%;
+          border-top: 2px solid rgba(5, 175, 242, 0.15);
+          width: 50%;
+          height: 18px;
+        }
+
+        .org-tree li::after {
+          right: auto;
+          left: 50%;
+          border-left: 2px solid rgba(5, 175, 242, 0.15);
+        }
+
+        .org-tree li:only-child::after, .org-tree li:only-child::before {
+          display: none;
+        }
+
+        .org-tree li:only-child {
+          padding-top: 0;
+        }
+
+        .org-tree li:first-child::before, .org-tree li:last-child::after {
+          border: 0 none;
+        }
+
+        .org-tree li:last-child::before {
+          border-right: 2px solid rgba(5, 175, 242, 0.15);
+          border-radius: 0 6px 0 0;
+        }
+
+        .org-tree li:first-child::after {
+          border-radius: 6px 0 0 0;
+        }
+
+        .org-tree ul::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50%;
+          border-left: 2px solid rgba(5, 175, 242, 0.15);
+          width: 0;
+          height: 18px;
+        }
+
+        /* Node Cards styling */
+        .org-node-card {
+          background: var(--white);
+          border: 1px solid rgba(5, 175, 242, 0.08);
+          border-radius: 12px;
+          padding: 10px 12px;
+          text-align: center;
+          box-shadow: var(--shadow-sm);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          min-width: 125px;
+          max-width: 140px;
+          cursor: default;
+          z-index: 2;
+        }
+
+        .org-node-card:hover {
+          transform: translateY(-3px);
+          box-shadow: var(--shadow-md);
+        }
+
+        /* Vibrant/Fresh color accents per department */
+        .org-node-card[data-dept="qc"] {
+          border-left: 4px solid #10B981;
+          background: rgba(16, 185, 129, 0.03);
+        }
+        .org-node-card[data-dept="qc"]:hover {
+          background: rgba(16, 185, 129, 0.08);
+          border-color: #10B981;
+        }
+
+        .org-node-card[data-dept="product"] {
+          border-left: 4px solid #dfb76c;
+          background: rgba(223, 183, 108, 0.03);
+        }
+        .org-node-card[data-dept="product"]:hover {
+          background: rgba(223, 183, 108, 0.08);
+          border-color: #dfb76c;
+        }
+
+        .org-node-card[data-dept="ops"] {
+          border-left: 4px solid #05AFF2;
+          background: rgba(5, 175, 242, 0.03);
+        }
+        .org-node-card[data-dept="ops"]:hover {
+          background: rgba(5, 175, 242, 0.08);
+          border-color: #05AFF2;
+        }
+
+        .org-node-card[data-dept="finance"] {
+          border-left: 4px solid #00b0ff;
+          background: rgba(0, 176, 255, 0.03);
+        }
+        .org-node-card[data-dept="finance"]:hover {
+          background: rgba(0, 176, 255, 0.08);
+          border-color: #00b0ff;
+        }
+
+        .org-node-card[data-dept="hr"] {
+          border-left: 4px solid #10B981;
+          background: rgba(16, 185, 129, 0.03);
+        }
+        .org-node-card[data-dept="hr"]:hover {
+          background: rgba(16, 185, 129, 0.08);
+          border-color: #10B981;
+        }
+
+        .org-node-card[data-dept="mkt"] {
+          border-left: 4px solid #ff4081;
+          background: rgba(255, 64, 129, 0.03);
+        }
+        .org-node-card[data-dept="mkt"]:hover {
+          background: rgba(255, 64, 129, 0.08);
+          border-color: #ff4081;
+        }
+
+        /* Vacant node styling */
+        .org-node-card.vacant {
+          border-color: rgba(16, 185, 129, 0.3) !important;
+          background: rgba(16, 185, 129, 0.04) !important;
+        }
+        .org-node-card.vacant:hover {
+          background: rgba(16, 185, 129, 0.1) !important;
+        }
+
+        .org-node-card .role {
+          font-size: 8px;
+          text-transform: uppercase;
+          font-weight: 800;
+          color: var(--text-muted);
+          letter-spacing: 0.5px;
+          display: block;
+          margin-bottom: 2px;
+          transition: color 0.3s ease;
+        }
+        .org-node-card:hover .role {
+          color: var(--trinh-blue-dark);
+        }
+
+        .org-node-card .name {
+          font-family: 'Montserrat', sans-serif;
+          font-size: 11.5px;
+          font-weight: 900;
+          color: var(--coffee-dark);
+          display: block;
+        }
+
+        .org-node-card .tag {
+          display: inline-block;
+          font-size: 8px;
+          font-weight: 800;
+          color: #047857;
+          background: rgba(16, 185, 129, 0.1);
+          padding: 1px 4px;
+          border-radius: 20px;
+          margin-top: 4px;
+        }
+
+        /* CEO Card Custom styling */
+        .org-node-card.ceo {
+          background: linear-gradient(135deg, var(--trinh-blue-dark, #0d2d45), #0a1a2e);
+          border: 2px solid var(--trinh-gold, #dfb76c);
+          color: #fff;
+          min-width: 220px;
+          padding: 14px 20px;
+          box-shadow: 0 10px 25px rgba(5, 175, 242, 0.15);
+        }
+
+        .org-node-card.ceo:hover {
+          background: linear-gradient(135deg, #113652, #0e243b);
+          box-shadow: 0 12px 30px rgba(5, 175, 242, 0.22);
+          border-color: #fff;
+        }
+
+        .org-node-card.ceo .role {
+          color: rgba(255, 255, 255, 0.6);
+        }
+        .org-node-card.ceo .name {
+          color: #fff;
+          font-size: 16px;
+          margin: 2px 0 4px 0;
+        }
+        .org-node-card.ceo .sub {
+          font-size: 10px;
+          opacity: 0.8;
+          color: var(--trinh-blue-light);
+          font-weight: 700;
+        }
+
+        /* Filtering classes */
+        .org-node-card.dimmed {
+          opacity: 0.15 !important;
+          filter: grayscale(80%);
+          transform: scale(0.95);
+        }
+        
+        .org-node-card.highlighted {
+          border-color: var(--trinh-gold) !important;
+          box-shadow: 0 0 15px rgba(223, 183, 108, 0.3) !important;
+        }
+      </style>
+
+      <div class="org-tree-wrapper">
+        <!-- Scroll hint -->
+        <div class="org-tree-scroll-hint">
+          <i class="fa-solid fa-angles-left"></i> Vuốt ngang / Rê chuột để xem trọn bộ sơ đồ tổ chức <i class="fa-solid fa-angles-right"></i>
+        </div>
+
+        <div class="org-tree-canvas">
+          <div class="org-tree">
+            <ul>
+              <li>
+                <!-- CEO Card -->
+                <div class="org-node-card org-card-v2 ceo" data-dept="all" id="ceo-card">
+                  <span class="role">CEO &amp; Sáng Lập</span>
+                  <span class="name">Anh Sơn</span>
+                  <span class="sub">Trình Cà Phê — Đà Nẵng</span>
+                </div>
+
+                <ul>
+                  <!-- 1. QC & Training -->
+                  <li>
+                    <div class="org-node-card org-card-v2 vacant" data-dept="qc">
+                      <span class="role">QC &amp; Training</span>
+                      <span class="name">Đang Tuyển</span>
+                      <span class="tag">🟢 Tuyển dụng</span>
+                    </div>
+                  </li>
+
+                  <!-- 2. Head of Product -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="product">
+                      <span class="role">Head of Product</span>
+                      <span class="name">Tân</span>
+                    </div>
+                    <ul>
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="product">
+                          <span class="role">Food Manager</span>
+                          <span class="name">Toàn</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="product">
+                          <span class="role">Barista Manager</span>
+                          <span class="name">Toàn</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- 3. Operation Manager -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="ops">
+                      <span class="role">Operation Manager</span>
+                      <span class="name">Sơn</span>
+                    </div>
+                    <ul>
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="ops">
+                          <span class="role">Quản Lý Vùng</span>
+                          <span class="name">Gấu</span>
+                        </div>
+                        <ul>
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="ops">
+                              <span class="role">Quản lý cửa hàng</span>
+                              <span class="name">Từng CS</span>
+                            </div>
+                            <ul>
+                              <li>
+                                <div class="org-node-card org-card-v2 filled" data-dept="ops">
+                                  <span class="role">Giám sát</span>
+                                  <span class="name">Từng ca</span>
+                                </div>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- 4. Trưởng Kế toán tài chính -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="finance">
+                      <span class="role">Trưởng Kế toán tài chính</span>
+                      <span class="name">Kim Anh</span>
+                    </div>
+                    <ul>
+                      <li>
+                        <div class="org-node-card org-card-v2 vacant" data-dept="finance">
+                          <span class="role">Kế toán trưởng</span>
+                          <span class="name">Đang Tuyển</span>
+                          <span class="tag">🟢 Tuyển dụng</span>
+                        </div>
+                        <ul>
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="finance">
+                              <span class="role">Thu mua &amp; Kho</span>
+                              <span class="name">Nguyện</span>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="finance">
+                              <span class="role">Kế toán Thu Chi</span>
+                              <span class="name">Ngọc Huyền</span>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="finance">
+                              <span class="role">Kế toán thuê ngoài</span>
+                              <span class="name">Oanh</span>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- 5. Trưởng Nhân sự -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="hr">
+                      <span class="role">Trưởng Nhân sự</span>
+                      <span class="name">Thanh Hà</span>
+                    </div>
+                  </li>
+
+                  <!-- 6. Phụ trách Marketing -->
+                  <li>
+                    <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                      <span class="role">Phụ trách Marketing</span>
+                      <span class="name">Hương</span>
+                    </div>
+                    <ul>
+                      <!-- Marketing Manager -->
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                          <span class="role">Marketing Manager</span>
+                          <span class="name">Vũ</span>
+                        </div>
+                        <ul>
+                          <!-- Left Column (Marcom) -->
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                              <span class="role">Marcom - MKT executive</span>
+                              <span class="name">Quốc Huy</span>
+                            </div>
+                            <ul>
+                              <li>
+                                <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                                  <span class="role">Copywriter Part-time</span>
+                                  <span class="name">Tú Anh</span>
+                                </div>
+                              </li>
+                            </ul>
+                          </li>
+                          <!-- Right Column (Content) -->
+                          <li>
+                            <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                              <span class="role">Content Creator Fulltime</span>
+                              <span class="name">Thanh Trúc</span>
+                            </div>
+                            <ul>
+                              <li>
+                                <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                                  <span class="role">Content Creator Part-time</span>
+                                  <span class="name">Mỹ Duyên</span>
+                                </div>
+                                <ul>
+                                  <li>
+                                    <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                                      <span class="role">Content Creator Part-time</span>
+                                      <span class="name">Hạ Vy</span>
+                                    </div>
+                                    <ul>
+                                      <li>
+                                        <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                                          <span class="role">Photography</span>
+                                          <span class="name">Đăng Đại</span>
+                                        </div>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <!-- Sale Marketing Fulltime directly under Phụ trách MKT -->
+                      <li>
+                        <div class="org-node-card org-card-v2 filled" data-dept="mkt">
+                          <span class="role">Sale Marketing Fulltime</span>
+                          <span class="name">Kiều My</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Outstanding Stats Grid (Con số nổi bật) ─── -->
+      <div class="outstanding-stats-container" style="margin-top: 50px; border-top: 1px dashed rgba(5, 175, 242, 0.15); padding-top: 40px;">
+        <div class="section-header" style="margin-bottom: 35px;">
+          <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: var(--trinh-green);"><i class="fa-solid fa-chart-simple"></i> Số Liệu Ấn Tượng</span>
+          <h3>Con số nổi bật</h3>
+        </div>
+        <div class="stats-grid">
+          <!-- Card 1: 10+ -->
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
+            <div class="stat-number">10+</div>
+            <p class="stat-text">Trình đã phát triển hơn <strong>10 cửa hàng</strong> tại Đà Nẵng và phân phối sản phẩm tại nhiều đơn vị như <strong>Lotte Mart, Hanigo,...</strong></p>
+          </div>
+          <!-- Card 2: 50+ -->
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-newspaper"></i></div>
+            <div class="stat-number">50+</div>
+            <p class="stat-text">Hơn <strong>50 kênh báo chí</strong> trang thông tin trong và ngoài nước nói về <strong>Trình cà phê</strong></p>
+          </div>
+          <!-- Card 3: 300.000+ -->
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-mug-hot"></i></div>
+            <div class="stat-number">300.000+</div>
+            <p class="stat-text">Hơn <strong>300 ngàn ly cà phê bơ</strong> được phục vụ tới bà con trong và ngoài nước</p>
+          </div>
+          <!-- Card 4: 100+ -->
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-number">100+</div>
+            <p class="stat-text">Hơn <strong>100 nhân sự</strong> có chuyên môn</p>
+          </div>
+          <!-- Card 5: 4.9 -->
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+            <div class="stat-number">4.9</div>
+            <p class="stat-text">Tỉ lệ đánh giá <strong>4.9/5 sao</strong> trên nền tảng Google và Tripadvisor</p>
+          </div>
+          <!-- Card 6: 120.000 m2 -->
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-seedling"></i></div>
+            <div class="stat-number">120.000 <span style="font-size: 18px; font-weight: 700;">m²</span></div>
+            <p class="stat-text">Hơn <strong>120.000 m²</strong> vườn cà phê Fine Robusta, Arabica, vườn bơ và sầu riêng tại Đắk Lắk</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ SLOGAN PHILOSOPHY ═══════════ -->
+  <section id="slogan-philosophy" class="section-padding">
+    <div class="container">
+      <div class="slogan-grid">
+        <!-- Left: Slogan Quote & Details -->
+        <div class="slogan-text-col">
+          <span class="badge" style="display: inline-flex; align-items: center; gap: 6px; background: var(--trinh-blue-light); color: var(--trinh-blue-dark); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; padding: 6px 16px; border-radius: 50px; margin-bottom: 16px;">
+            <i class="fa-solid fa-quote-left"></i> Triết Lý Slogan
+          </span>
+          <blockquote>
+            <span class="slogan-quote">“Sống tươi mỗi ngày qua tách cà phê”</span>
+          </blockquote>
+          <p class="slogan-paragraph">
+            Từ những hạt cà phê tươi xanh tới nụ cười tươi vui và nguồn năng lượng sống từng ngày được nuôi dưỡng. Giống như cây tràn đầy nhựa sống, Trình mong bà con cũng sẽ tràn đầy sức sống với tình yêu, những điều tích cực và những điều bình dị nhỏ bé mỗi ngày.
+          </p>
+        </div>
+
+        <!-- Right: Slogan Image -->
+        <div class="slogan-img-col">
+          <div class="slogan-img-box">
+            <img src="slogan-philosophy.png" alt="Sống tươi mỗi ngày qua tách cà phê">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ SẢN PHẨM & DỊCH VỤ - HỆ SINH THÁI ═══════════ -->
+  <section id="ecosystem" class="section-padding" style="background: var(--cream-bg); border-top: 1px dashed rgba(5, 175, 242, 0.15); padding-top: 60px; padding-bottom: 60px;">
+    <div class="container">
+      <div class="section-header" style="text-align: center; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <span class="badge" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.15); color: var(--trinh-green); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; padding: 6px 16px; border-radius: 50px; margin-bottom: 16px;">
+          <i class="fa-solid fa-layer-group"></i> Sản phẩm và dịch vụ
+        </span>
+        <h2 style="font-size: 34px; font-weight: 900; color: var(--coffee-dark); margin-bottom: 20px; font-family: 'Montserrat', sans-serif; text-transform: uppercase;">
+          Hệ sinh thái trải nghiệm toàn diện
+        </h2>
+        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; text-align: center; margin: 0;">
+          Từ những món nước tươi ngon hay bầu không khí tích cực, nhân văn, đến những hoạt động trải nghiệm thú vị và cả những sản phẩm chất lượng cao tất cả đều hướng về mục tiêu mang đến trải nghiệm sống tươi mỗi ngày qua tách cà phê.
+        </p>
+      </div>
+
+      <style>
+        .eco-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+        }
+        .eco-card {
+          background: var(--white);
+          border-radius: var(--border-radius);
+          box-shadow: var(--shadow-sm);
+          overflow: hidden;
+          transition: var(--transition-smooth);
+          display: flex;
+          flex-direction: column;
+          border: 1px solid rgba(5, 175, 242, 0.05);
+        }
+        .eco-card:hover {
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-md);
+        }
+        .eco-img-box {
+          width: 100%;
+          height: 240px;
+          overflow: hidden;
+          position: relative;
+        }
+        .eco-img-box img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: var(--transition-smooth);
+        }
+        .eco-card:hover .eco-img-box img {
+          transform: scale(1.06);
+        }
+        .eco-info {
+          padding: 28px 24px;
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+        }
+        .eco-info h3 {
+          font-family: 'Montserrat', sans-serif;
+          font-size: 20px;
+          font-weight: 800;
+          color: var(--coffee-dark);
+          margin-bottom: 14px;
+          line-height: 1.3;
+        }
+        .eco-info p {
+          font-size: 14.5px;
+          color: var(--text-dark);
+          line-height: 1.6;
+          margin: 0;
+        }
+        .eco-info ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .eco-info ul li {
+          font-size: 14.5px;
+          color: var(--text-dark);
+          line-height: 1.6;
+          margin-bottom: 8px;
+          position: relative;
+          padding-left: 18px;
+        }
+        .eco-info ul li::before {
+          content: '•';
+          color: var(--coffee-dark);
+          font-weight: bold;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        
+        /* Colored Bottom Bands to match screenshot */
+        .eco-card-1 .eco-info {
+          background-color: var(--trinh-blue-light);
+          border-top: 4px solid var(--trinh-blue);
+        }
+        .eco-card-2 .eco-info {
+          background-color: var(--trinh-green-light);
+          border-top: 4px solid var(--trinh-green);
+        }
+        .eco-card-3 .eco-info {
+          background-color: #FFF9F2; /* Warm peach */
+          border-top: 4px solid var(--caramel-gold);
+        }
+
+        @media (max-width: 992px) {
+          .eco-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+          }
+        }
+        @media (max-width: 576px) {
+          .eco-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+        }
+      </style>
+
+      <div class="eco-grid">
+        <!-- Card 1 -->
+        <div class="eco-card eco-card-1">
+          <div class="eco-img-box">
+            <img src="store-chain.jpg" alt="Chuỗi cửa hàng Trình cà phê">
+          </div>
+          <div class="eco-info">
+            <h3>Chuỗi cửa hàng Trình cà phê</h3>
+            <p>Hệ thống cửa hàng cà phê phục vụ tại chỗ và mang đi, nổi bật với những sản phẩm đặc trưng như cà phê bơ, cà phê muối, kem bơ, bơ dẻo dừa nước Hội An.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="eco-card eco-card-2">
+          <div class="eco-img-box">
+            <img src="coffee-packages.jpg" alt="Sản xuất và bán lẻ cà phê đóng gói">
+          </div>
+          <div class="eco-info">
+            <h3>Sản xuất và bán lẻ cà phê đóng gói</h3>
+            <p>Hệ thống phân phối sản phẩm đóng gói, bao gồm cà phê đặc sản rang xay, cà phê hòa tan và các bộ quà tặng mang đậm dấu ấn văn hóa.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="eco-card eco-card-3">
+          <div class="eco-img-box">
+            <img src="coffee-workshop.jpg" alt="Dịch vụ tổ chức trải nghiệm cộng đồng">
+          </div>
+          <div class="eco-info">
+            <h3>Dịch vụ tổ chức trải nghiệm cộng đồng</h3>
+            <ul>
+              <li>Workshop trải nghiệm cà phê đặc sản Việt Nam.</li>
+              <li>Hoạt động và sự kiện cộng đồng: đêm nhạc, hoạt động đường phố, chợ phiên, workshop nghệ thuật...</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ STORE CHAIN ═══════════ -->
+  <section id="store-chain" class="section-padding">
+    <div class="container">
+      <div class="chain-intro-grid">
+        <!-- Left: Introduction Text -->
+        <div class="chain-text-col">
+          <span class="badge" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(5, 175, 242, 0.15); color: var(--trinh-blue-dark); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; padding: 6px 16px; border-radius: 50px; margin-bottom: 16px;">
+            <i class="fa-solid fa-store"></i> Chuỗi Cửa Hàng
+          </span>
+          <h2 style="font-size: 34px; margin-bottom: 20px; text-transform: uppercase; color: var(--coffee-dark); line-height: 1.2;">Trình Cà Phê</h2>
+          <div style="font-size: 15px; color: var(--text-dark); line-height: 1.75; text-align: justify;">
+            <p style="margin-bottom: 16px;">
+              Hơn 7 năm thành lập và phát triển, hệ thống Trình cà phê đã phát triển 10 cửa hàng với nhiều mô hình khác nhau từ không gian vườn xanh trong phố, tới xưởng rang nhỏ bên phố hay những cửa hàng mang đi tại các điểm đặc trưng văn hoá của thành phố như Chợ Hàn, Cá Chép Hoá Rồng, Phố Đi Bộ.
+            </p>
+            <p style="margin-bottom: 16px;">
+              Trình mang đến những món uống tươi ngon mang đậm bản sắc văn hoá Việt Nam như cà phê phin truyền thống với hạt cà phê Fine Robusta chất lượng cao, món cà phê bơ nổi tiếng được bạn bè trong và ngoài nước yêu thích hay những món uống khác như Bơ dẻo dừa nước Hội An, Cà Phê Cốt Dừa...
+            </p>
+            <p style="margin-bottom: 16px;">
+              Không gian cũng mang đến trải nghiệm văn hoá thú vị khi mang những nét truyền thống tươi mới trở lại như nhà gỗ, mái ngói, ngói vảy cá...
+            </p>
+            <p>
+              Qua từng tách cà phê, Trình muốn lan tỏa văn hóa Việt, nuôi dưỡng lối sống tươi, sống vui, sống tử tế và đồng hành cùng cộng đồng trên hành trình phát triển bền vững.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Store Chain Image -->
+        <div class="chain-img-col">
+          <div class="chain-img-box">
+            <img src="store-chain.jpg" alt="Hệ thống Trình Cà Phê">
+          </div>
+        </div>
+      </div>
+
+      <!-- Store Grid (Actual Stores List) -->
+      <div class="stores-section-title">
+        <h3>Hệ Thống Chi Nhánh Hiện Tại</h3>
+        <p>Danh sách 8 chi nhánh Trình Cà Phê tại Đà Nẵng &amp; Hội An</p>
+      </div>
+
+      <div class="stores-compact-grid">
+        <!-- Store 1: Nguyễn Hữu Thọ -->
+        <div class="store-compact-card">
+          <div class="store-compact-left">
+            <div class="store-compact-icon">
+              <i class="fa-solid fa-fire-burner"></i>
+            </div>
+            <div class="store-compact-details">
+              <h4>Trình Nguyễn Hữu Thọ</h4>
+              <p title="111 Nguyễn Hữu Thọ, Hoà Cường, Hải Châu, Đà Nẵng">111 Nguyễn Hữu Thọ, Đà Nẵng</p>
+              <div class="store-compact-badges">
+                <span class="store-compact-badge badge-green">Mở 24/7</span>
+                <span class="store-compact-badge badge-blue">Nhà Rang</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://www.google.com/maps/place/Tr%C3%ACnh+C%C3%A0+Ph%C3%AA+-+111+Nguy%E1%BB%85n+H%E1%BB%AFu+Th%E1%BB%8D/@16.0513202,108.2068029,17z" target="_blank" class="store-compact-map-btn" title="Chỉ đường Google Maps">
+            <i class="fa-solid fa-location-dot"></i>
+          </a>
+        </div>
+
+        <!-- Store 2: VTV8 -->
+        <div class="store-compact-card">
+          <div class="store-compact-left">
+            <div class="store-compact-icon" style="background: var(--trinh-green-light); color: var(--trinh-green);">
+              <i class="fa-solid fa-tree"></i>
+            </div>
+            <div class="store-compact-details">
+              <h4>Trình VTV8</h4>
+              <p title="258 Bạch Đằng, Phước Ninh, Hải Châu, Đà Nẵng">258 Bạch Đằng, Hải Châu, Đà Nẵng</p>
+              <div class="store-compact-badges">
+                <span class="store-compact-badge badge-green">Mở 24/7</span>
+                <span class="store-compact-badge badge-blue">Sân Vườn</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=258+B%E1%BA%A3ch+%C4%90%E1%BA%B1ng,+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank" class="store-compact-map-btn" title="Chỉ đường Google Maps" style="color: var(--trinh-green); background: var(--trinh-green-light); border-color: rgba(16,185,129,0.15)">
+            <i class="fa-solid fa-location-dot"></i>
+          </a>
+        </div>
+
+        <!-- Store 3: Phạm Hồng Thái -->
+        <div class="store-compact-card">
+          <div class="store-compact-left">
+            <div class="store-compact-icon">
+              <i class="fa-solid fa-gears"></i>
+            </div>
+            <div class="store-compact-details">
+              <h4>Trình Phạm Hồng Thái</h4>
+              <p title="25 Phạm Hồng Thái, Hải Châu 1, Hải Châu, Đà Nẵng">25 Phạm Hồng Thái, Đà Nẵng</p>
+              <div class="store-compact-badges">
+                <span class="store-compact-badge badge-green">6:30 - 1:00</span>
+                <span class="store-compact-badge badge-blue">Xưởng Rang</span>
+              </div>
+            </div>
+          </div>
+          <a href="http://google.com/maps/place/Tr%C3%ACnh+c%C3%A0+ph%C3%AA/data=!4m2!3m1!1s0x0:0xcd8455fecf74c490" target="_blank" class="store-compact-map-btn" title="Chỉ đường Google Maps">
+            <i class="fa-solid fa-location-dot"></i>
+          </a>
+        </div>
+
+        <!-- Store 4: Phố đi bộ Bạch Đằng -->
+        <div class="store-compact-card">
+          <div class="store-compact-left">
+            <div class="store-compact-icon">
+              <i class="fa-solid fa-store"></i>
+            </div>
+            <div class="store-compact-details">
+              <h4>Trình Phố Đi Bộ</h4>
+              <p title="Phố đi bộ Bạch Đằng, Phước Ninh, Hải Châu, Đà Nẵng">Phố đi bộ Bạch Đằng, Đà Nẵng</p>
+              <div class="store-compact-badges">
+                <span class="store-compact-badge badge-green">4:00 - 1:00</span>
+                <span class="store-compact-badge badge-blue">Coffee Stand</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/QUqwqe9B89ywxDQXA" target="_blank" class="store-compact-map-btn" title="Chỉ đường Google Maps">
+            <i class="fa-solid fa-location-dot"></i>
+          </a>
+        </div>
+
+        <!-- Store 5: Chợ Hàn -->
+        <div class="store-compact-card">
+          <div class="store-compact-left">
+            <div class="store-compact-icon">
+              <i class="fa-solid fa-store"></i>
+            </div>
+            <div class="store-compact-details">
+              <h4>Trình Chợ Hàn</h4>
+              <p title="Chợ Hàn - Cổng Bạch Đằng, Hải Châu, Đà Nẵng">Cổng Bạch Đằng, Chợ Hàn, Đà Nẵng</p>
+              <div class="store-compact-badges">
+                <span class="store-compact-badge badge-green">7:00 - 18:30</span>
+                <span class="store-compact-badge badge-blue">Coffee Stand</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/SMxdXcA9NPW2gi8Y9" target="_blank" class="store-compact-map-btn" title="Chỉ đường Google Maps">
+            <i class="fa-solid fa-location-dot"></i>
+          </a>
+        </div>
+
+        <!-- Store 6: Cá Chép Hóa Rồng -->
+        <div class="store-compact-card">
+          <div class="store-compact-left">
+            <div class="store-compact-icon">
+              <i class="fa-solid fa-ice-cream"></i>
+            </div>
+            <div class="store-compact-details">
+              <h4>Trình Cá Chép Hoá Rồng</h4>
+              <p title="Tượng cá chép hoá rồng, Trần Hưng Đạo, Sơn Trà, Đà Nẵng">Đường Trần Hưng Đạo, Sơn Trà, Đà Nẵng</p>
+              <div class="store-compact-badges">
+                <span class="store-compact-badge badge-green">7:00 - 23:00</span>
+                <span class="store-compact-badge badge-blue">Ice Cream</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/rJfvzATJgXDaR1GHA" target="_blank" class="store-compact-map-btn" title="Chỉ đường Google Maps">
+            <i class="fa-solid fa-location-dot"></i>
+          </a>
+        </div>
+
+        <!-- Store 7: Bảo Tàng Đà Nẵng -->
+        <div class="store-compact-card">
+          <div class="store-compact-left">
+            <div class="store-compact-icon">
+              <i class="fa-solid fa-monument"></i>
+            </div>
+            <div class="store-compact-details">
+              <h4>Trình Bảo Tàng</h4>
+              <p title="Bảo tàng Đà Nẵng - 31 Trần Phú, Hải Châu, Đà Nẵng">31 Trần Phú, Hải Châu, Đà Nẵng</p>
+              <div class="store-compact-badges">
+                <span class="store-compact-badge badge-green">8:00 - 17:00</span>
+                <span class="store-compact-badge badge-blue">Bảo Tàng</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=31+Tr%E1%BA%A7n+Ph%C3%BA,+%C4%90%C3%A0+N%E1%BA%B5ng" target="_blank" class="store-compact-map-btn" title="Chỉ đường Google Maps">
+            <i class="fa-solid fa-location-dot"></i>
+          </a>
+        </div>
+
+        <!-- Store 8: Bistro Hội An -->
+        <div class="store-compact-card">
+          <div class="store-compact-left">
+            <div class="store-compact-icon" style="background: var(--trinh-green-light); color: var(--trinh-green);">
+              <i class="fa-solid fa-mug-hot"></i>
+            </div>
+            <div class="store-compact-details">
+              <h4>Trình Bistro Hội An</h4>
+              <p title="200 Nguyễn Tri Phương rẽ trái, Cẩm Nam, Hội An">Cẩm Nam, Hội An</p>
+              <div class="store-compact-badges">
+                <span class="store-compact-badge badge-green">6:30 - 22:30</span>
+                <span class="store-compact-badge badge-blue">Bistro</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/F4buiHsQX4KXcnzd9" target="_blank" class="store-compact-map-btn" title="Chỉ đường Google Maps" style="color: var(--trinh-green); background: var(--trinh-green-light); border-color: rgba(16,185,129,0.15)">
+            <i class="fa-solid fa-location-dot"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ═══════════ 6. GIÁ TRỊ CỐT LÕI: TRIẾT LÝ "5 TƯƠI" ═══════════ -->
+  <section id="five-fresh" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge"><i class="fa-solid fa-circle-notch"></i> Core Values</span>
+        <h2>Giá Trị Cốt Lõi: Triết Lý "5 Tươi" Nhà Trình</h2>
+        <p>Mô hình 5 Tươi là trái tim, mạch máu và hệ thống hành vi ứng xử bắt buộc đối với toàn bộ nhân sự Nhà Trình.</p>
+      </div>
+
+      <div class="fresh-grid">
+        <!-- Fresh 1 -->
+        <div class="fresh-card">
+          <div class="fresh-icon"><i class="fa-solid fa-mug-hot"></i></div>
+          <h3>1. Món uống TƯƠI NGON</h3>
+          <div class="fresh-definition">
+            <strong>Định nghĩa:</strong> Mang đến cho khách hàng trải nghiệm sản phẩm 100% tươi ngon hằng ngày, giữ trọn vẹn hương vị mộc mạc nguyên bản. Lựa chọn nguồn nguyên liệu rang mộc sạch sẽ, quy trình pha chế xay tươi mới hằng ngày trực tiếp tại cửa hàng.
+          </div>
+          <div class="fresh-materials">
+            <h4>Hành vi ứng xử bắt buộc:</h4>
+            <ul style="border-top: 1px dashed rgba(5,175,242,0.15); padding-top: 8px;">
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Rửa tay sát khuẩn trước ca pha chế &amp; sau mỗi lần đi vệ sinh hoặc dọn dẹp.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Đong đếm pha chế chuẩn xác 100% theo đúng công thức định lượng tiêu chuẩn.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Phục vụ sản phẩm trong ly tách khô ráo, sạch vân tay và bóng loáng.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Chủ động kiểm tra hạn sử dụng và cảm quan chất lượng nguyên vật liệu vào đầu ca làm.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Fresh 2 -->
+        <div class="fresh-card">
+          <div class="fresh-icon"><i class="fa-solid fa-seedling"></i></div>
+          <h3>2. Không gian TƯƠI XANH</h3>
+          <div class="fresh-definition">
+            <strong>Định nghĩa:</strong> Thiết kế không gian mộc mạc, bình dị, gần gũi và có gu thẩm mỹ độc đáo. Tôn trọng vẻ đẹp tự nhiên của cỏ cây, giữ gìn môi trường đạt chứng chỉ xanh và chủ động giảm thiểu tối đa rác thải nhựa.
+          </div>
+          <div class="fresh-materials">
+            <h4>Hành vi ứng xử bắt buộc:</h4>
+            <ul style="border-top: 1px dashed rgba(5,175,242,0.15); padding-top: 8px;">
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Chủ động nhặt rác ngay khi thấy dơ, không đùn đẩy hay chờ nhắc nhở.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Chăm sóc, nhặt lá úa và tưới nước cho cây cảnh quan mặt tiền hằng ca.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Sắp xếp bàn ghế thẳng tắp, ngăn nắp, lau sạch bụi mịn bề mặt hằng giờ.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Phân loại rác hữu cơ, rác vô cơ và rác tái chế tại quầy bar chuẩn xác 100%.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Fresh 3 -->
+        <div class="fresh-card">
+          <div class="fresh-icon"><i class="fa-solid fa-face-smile"></i></div>
+          <h3>3. Bầu không khí TƯƠI VUI</h3>
+          <div class="fresh-definition">
+            <strong>Định nghĩa:</strong> Lan tỏa nguồn năng lượng sống tích cực, vui tươi, ấm áp đến với bà con. Kiến tạo một không gian rôm rả, thân thiện để mọi người thoải mái trò chuyện, gắn kết tình cảm.
+          </div>
+          <div class="fresh-materials">
+            <h4>Hành vi ứng xử bắt buộc:</h4>
+            <ul style="border-top: 1px dashed rgba(5,175,242,0.15); padding-top: 8px;">
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Chủ động mở lời cười tươi chào đón/tạm biệt bà con khi vào/ra chi nhánh.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Giữ thái độ tích cực trong ca làm, tuyệt đối cấm cãi vã lớn tiếng trước mặt khách.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Mở nhạc đúng playlist quy định theo khung giờ, điều chỉnh âm lượng vừa phải.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Nói chuyện âm lượng lịch sự với đồng đội, không gây ồn ào ảnh hưởng tới khách.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Fresh 4 -->
+        <div class="fresh-card">
+          <div class="fresh-icon"><i class="fa-solid fa-user-friends"></i></div>
+          <h3>4. Tình người TƯƠI TẮN</h3>
+          <div class="fresh-definition">
+            <strong>Định nghĩa:</strong> Gieo duyên và đối xử chân thành, chăm sóc chu đáo, thẳng thắn và hạn chế khoảng cách cấp bậc. Phục vụ khách hàng bằng sự đồng cảm sâu sắc và lắng nghe thấu hiểu từ trái tim.
+          </div>
+          <div class="fresh-materials">
+            <h4>Hành vi ứng xử bắt buộc:</h4>
+            <ul style="border-top: 1px dashed rgba(5,175,242,0.15); padding-top: 8px;">
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Chủ động hỗ trợ, gánh vác công việc khi đồng đội ở quầy khác bị quá tải.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Góp ý trực tiếp thẳng thắn trên tinh thần xây dựng, cầu thị và tôn trọng nhau.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Luôn phản hồi thông tin ngay khi nhận được, tuyệt đối không làm ngơ, không phản hồi.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Tận tâm chia sẻ kiến thức, kiên nhẫn dìu dắt nhân sự mới hòa nhập tốt.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Fresh 5 -->
+        <div class="fresh-card">
+          <div class="fresh-icon"><i class="fa-solid fa-hands-holding"></i></div>
+          <h3>5. Truyền thống TƯƠI MỚI</h3>
+          <div class="fresh-definition">
+            <strong>Định nghĩa:</strong> Kế thừa và thổi bùng sức sống mới vào các giá trị văn hóa nghệ thuật và nhân văn lâu đời của địa phương thông qua thiết kế sản phẩm sáng tạo và trưng bày mộc mạc tại không gian quán.
+          </div>
+          <div class="fresh-materials">
+            <h4>Hành vi ứng xử bắt buộc:</h4>
+            <ul style="border-top: 1px dashed rgba(5,175,242,0.15); padding-top: 8px;">
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Trân trọng, giữ gìn và bảo vệ các ly gốm truyền thống Thanh Hà, đồ gỗ cổ.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Tự tin, chủ động giới thiệu câu chuyện lịch sử thương hiệu Trình khi khách tò mò.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Tích cực đóng góp ý tưởng để làm mới trải nghiệm văn hóa địa phương hằng tháng.</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--trinh-green)"></i> Tham gia nhiệt huyết các hoạt động lễ hội, truyền thông văn hóa truyền thống của quán.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ 8. RACI PERSONNEL MAP ═══════════ -->
+  <section id="personnel-map" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge"><i class="fa-solid fa-sitemap"></i> Sơ đồ Tổ chức</span>
+        <h2>Sơ Đồ Tổ Chức Nhà Trình</h2>
+        <p>Sơ đồ cơ cấu tổ chức quản lý vận hành phân tầng toàn chuỗi của Trình Cà Phê.</p>
+      </div>
+
+      <!-- Department Filter Bar -->
+      <div class="org-filters">
+        <button class="org-filter-btn active" id="filter-all" onclick="orgFilter('all', this)">
+          <i class="fa-solid fa-sitemap"></i> Tất Cả
+        </button>
+        <button class="org-filter-btn" onclick="orgFilter('qc', this)">
+          <i class="fa-solid fa-clipboard-check"></i> QC & Đào Tạo
+        </button>
+        <button class="org-filter-btn" onclick="orgFilter('product', this)">
+          <i class="fa-solid fa-mug-hot"></i> Sản Phẩm
+        </button>
+        <button class="org-filter-btn" onclick="orgFilter('ops', this)">
+          <i class="fa-solid fa-gears"></i> Vận Hành
+        </button>
+        <button class="org-filter-btn" onclick="orgFilter('finance', this)">
+          <i class="fa-solid fa-wallet"></i> Tài Chính
+        </button>
+        <button class="org-filter-btn" onclick="orgFilter('hr', this)">
+          <i class="fa-solid fa-user-plus"></i> Nhân Sự
+        </button>
+        <button class="org-filter-btn" onclick="orgFilter('mkt', this)">
+          <i class="fa-solid fa-bullhorn"></i> Marketing
+        </button>
+      </div>
+
+      <!-- 5.5 CUSTOM TREE STYLE -->
+      <style>
+        .org-tree-wrapper {
+          width: 100%;
           margin: 30px auto 0;
           background: rgba(255,255,255,0.02);
           border: 1px solid rgba(5, 175, 242, 0.08);
