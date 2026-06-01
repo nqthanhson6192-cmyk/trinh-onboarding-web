@@ -4547,134 +4547,99 @@
         <p>Quy chuẩn về chế độ, giờ giấc, phúc lợi và nghĩa vụ bắt buộc của toàn bộ nhân sự Nhà Trình.</p>
       </div>
 
-      <div class="handbook-accordion">
-        <!-- Item 1: Giờ làm việc -->
-        <div class="hb-item">
-          <div class="hb-header" onclick="toggleHandbook(this)">
-            <span>⏰ 1. Khung Giờ Làm Việc &amp; Ca Làm</span>
-            <i class="fa-solid fa-chevron-down hb-icon"></i>
-          </div>
-          <div class="hb-content">
-            <p>Trình vận hành linh hoạt để phục vụ bà con chu đáo nhất:</p>
-            <ul style="margin-left: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-              <li>🟢 <strong>Ca sáng:</strong> 6:30 AM – 12:30 PM (Thực hiện pha chế, chuẩn bị sảnh tươi).</li>
-              <li>🟢 <strong>Ca chiều:</strong> 12:30 PM – 18:30 PM (Tập trung phục vụ, đón tiếp bà con).</li>
-              <li>🟢 <strong>Ca tối:</strong> 18:30 PM – 11:30 PM (Dọn dẹp vệ sinh chi tiết, chốt ca kiểm kho).</li>
-              <li>🟢 <strong>Ca gieo duyên 24/7 (Đặc thù Nguyễn Hữu Thọ &amp; VTV8):</strong> Phân bổ ca đêm linh hoạt theo sự sắp xếp của Cửa Hàng Trưởng.</li>
-            </ul>
-          </div>
-        </div>
+      <style>
+        .handbook-grid-web {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+          max-width: 900px;
+          margin: 24px auto 0;
+        }
+        @media (max-width: 768px) {
+          .handbook-grid-web {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+        }
+        .hb-web-card {
+          background: var(--white);
+          border: 1px solid rgba(5, 175, 242, 0.08);
+          border-radius: 12px;
+          padding: 22px 24px;
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          box-shadow: var(--shadow-sm);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: default;
+        }
+        .hb-web-card:hover {
+          transform: translateY(-3px);
+          border-color: rgba(223, 183, 108, 0.4);
+          box-shadow: var(--shadow-md);
+          background: var(--trinh-blue-light);
+        }
+        .hb-web-card span.hb-emoji {
+          font-size: 26px;
+          transition: transform 0.3s ease;
+        }
+        .hb-web-card:hover span.hb-emoji {
+          transform: scale(1.15);
+        }
+        .hb-web-card span.hb-num {
+          font-family: 'Montserrat', sans-serif;
+          font-size: 15px;
+          font-weight: 800;
+          color: var(--coffee-dark);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          transition: color 0.3s ease;
+        }
+        .hb-web-card:hover span.hb-num {
+          color: var(--trinh-blue-dark);
+        }
+      </style>
 
-        <!-- Item 2: Chấm công -->
-        <div class="hb-item">
-          <div class="hb-header" onclick="toggleHandbook(this)">
-            <span>📱 2. Quy Định Chấm Công (FaceID &amp; Odoo)</span>
-            <i class="fa-solid fa-chevron-down hb-icon"></i>
-          </div>
-          <div class="hb-content">
-            <p>Đảm bảo công bằng và minh bạch cho ngày công của bạn:</p>
-            <ul style="margin-left: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-              <li>🟢 <strong>Có mặt trước 10 phút:</strong> Phải có mặt tại cửa hàng trước ca **10 phút** để chuẩn bị đồng phục, tác phong trước khi chấm công vào ca.</li>
-              <li>🟢 <strong>Hình thức chấm công:</strong> Thực hiện chấm công qua thiết bị **FaceID tại quán** hoặc định vị **GPS qua ứng dụng Odoo** trên điện thoại cá nhân.</li>
-              <li>🟢 <strong>Quên chấm công:</strong> Phải làm đề xuất giải trình trên hệ thống Odoo ngay trong ca để được chốt công ca đó (phạt 10.000₫ theo quy định).</li>
-            </ul>
-          </div>
+      <div class="handbook-grid-web">
+        <!-- Item 1 -->
+        <div class="hb-web-card">
+          <span class="hb-emoji">⏰</span>
+          <span class="hb-num">1. Khung Giờ Làm Việc &amp; Ca Làm</span>
         </div>
-
-        <!-- Item 3: Nghỉ phép -->
-        <div class="hb-item">
-          <div class="hb-header" onclick="toggleHandbook(this)">
-            <span>📅 3. Quy Trình Đăng Ký Nghỉ Phép</span>
-            <i class="fa-solid fa-chevron-down hb-icon"></i>
-          </div>
-          <div class="hb-content">
-            <p>Nguyên tắc đảm bảo vận hành chi nhánh không bị gián đoạn:</p>
-            <ul style="margin-left: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-              <li>🟢 <strong>Nghỉ phép định kỳ:</strong> Làm đơn xin phép gửi Cửa Hàng Trưởng trên ứng dụng Odoo trước ít nhất **3 ngày làm việc**.</li>
-              <li>🟢 <strong>Đổi ca/Thế ca:</strong> Phải chủ động tìm nhân sự đổi ca tương đương và báo cáo Cửa Hàng Trưởng phê duyệt trước **24 giờ** (không tự ý đổi chui).</li>
-              <li>🟢 <strong>Nghỉ đột xuất/Sự cố:</strong> Báo cáo trực tiếp qua điện thoại cho Cửa Hàng Trưởng trước ca làm ít nhất **2 tiếng** (chỉ áp dụng đối với trường hợp ốm đau cấp bách).</li>
-            </ul>
-          </div>
+        <!-- Item 2 -->
+        <div class="hb-web-card">
+          <span class="hb-emoji">📱</span>
+          <span class="hb-num">2. Quy Định Chấm Công</span>
         </div>
-
-        <!-- Item 4: Lương thưởng -->
-        <div class="hb-item">
-          <div class="hb-header" onclick="toggleHandbook(this)">
-            <span>🪙 4. Quy Chế Lương &amp; Thưởng KPI</span>
-            <i class="fa-solid fa-chevron-down hb-icon"></i>
-          </div>
-          <div class="hb-content">
-            <p>Ghi nhận nỗ lực đóng góp xứng đáng của bạn:</p>
-            <ul style="margin-left: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-              <li>🟢 <strong>Chu kỳ thanh toán:</strong> Lương được chuyển khoản vào tài khoản ngân hàng của bạn vào ngày **10 hằng tháng** (đối soát công từ ngày 1 đến ngày cuối tháng trước).</li>
-              <li>🟢 <strong>Cấu trúc thu nhập:</strong> Thu nhập = Lương cơ bản theo giờ/tháng + Phụ cấp ca đêm + Phụ cấp chuyên cần + Thưởng doanh thu chi nhánh (KPI).</li>
-              <li>🟢 <strong>Phiếu lương chi tiết (Payslip):</strong> Được gửi tự động qua email cá nhân vào ngày 8 hằng tháng để đối soát trước khi giải ngân.</li>
-            </ul>
-          </div>
+        <!-- Item 3 -->
+        <div class="hb-web-card">
+          <span class="hb-emoji">📅</span>
+          <span class="hb-num">3. Quy Trình Đăng Ký Nghỉ Phép</span>
         </div>
-
-        <!-- Item 5: Hợp đồng -->
-        <div class="hb-item">
-          <div class="hb-header" onclick="toggleHandbook(this)">
-            <span>✍️ 5. Hợp Đồng Lao Động &amp; Ký Cam Kết</span>
-            <i class="fa-solid fa-chevron-down hb-icon"></i>
-          </div>
-          <div class="hb-content">
-            <p>Đảm bảo tính pháp lý và gắn kết bền lâu:</p>
-            <ul style="margin-left: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-              <li>🟢 <strong>Cam kết nhận việc:</strong> Thực hiện điền thông tin và ký chữ ký điện tử online trên trang Quy Định Chung ngay trong ngày đầu tiên hội nhập.</li>
-              <li>🟢 <strong>Thử việc gieo duyên:</strong> Thời gian thử việc từ 15 ngày (Part-time) đến 1 tháng (Full-time) tùy vị trí công tác.</li>
-              <li>🟢 <strong>Hợp đồng chính thức:</strong> Sau khi đạt đánh giá thử việc, nhân sự thực hiện ký hợp đồng lao động giấy chính thức tại văn phòng tổng trong vòng **7 ngày**.</li>
-            </ul>
-          </div>
+        <!-- Item 4 -->
+        <div class="hb-web-card">
+          <span class="hb-emoji">🪙</span>
+          <span class="hb-num">4. Quy Chế Lương &amp; Thưởng KPI</span>
         </div>
-
-        <!-- Item 6: Bảo hiểm & Phúc lợi -->
-        <div class="hb-item">
-          <div class="hb-header" onclick="toggleHandbook(this)">
-            <span>💚 6. Bảo Hiểm &amp; Phúc Lợi Nhân Sự</span>
-            <i class="fa-solid fa-chevron-down hb-icon"></i>
-          </div>
-          <div class="hb-content">
-            <p>Trình luôn chăm sóc sức khỏe và đời sống tinh thần của anh em:</p>
-            <ul style="margin-left: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-              <li>🟢 <strong>Bảo hiểm xã hội:</strong> Trình đóng BHXH, BHYT đầy đủ theo quy định của pháp luật cho nhân sự Full-time ký hợp đồng chính thức.</li>
-              <li>🟢 <strong>Phúc lợi hằng ngày:</strong> Miễn phí 1 ly nước uống signature trong ca làm việc, hỗ trợ cơm ca cho nhân viên làm ca gãy hoặc ca đêm.</li>
-              <li>🟢 <strong>Quỹ văn hóa &amp; hoạt động:</strong> Thưởng sinh nhật, hỗ trợ cưới hỏi/hiếu hỷ, quỹ team building chi nhánh hằng tháng để anh em xôm tụ tươi vui.</li>
-            </ul>
-          </div>
+        <!-- Item 5 -->
+        <div class="hb-web-card">
+          <span class="hb-emoji">✍️</span>
+          <span class="hb-num">5. Hợp Đồng Lao Động &amp; Cam Kết</span>
         </div>
-
-        <!-- Item 7: Bảo quản tài sản -->
-        <div class="hb-item">
-          <div class="hb-header" onclick="toggleHandbook(this)">
-            <span>🛡️ 7. Quy Định Bảo Quản Tài Sản Cửa Hàng</span>
-            <i class="fa-solid fa-chevron-down hb-icon"></i>
-          </div>
-          <div class="hb-content">
-            <p>Bảo quản trang thiết bị làm việc cẩn thận như bảo vệ ngôi nhà mình:</p>
-            <ul style="margin-left: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-              <li>🟢 <strong>Trang thiết bị chuyên môn:</strong> Có trách nhiệm vận hành đúng kỹ thuật máy pha La Marzocco, máy xay cà phê. Vệ sinh bồn rửa, bộ gõ bã, ca đánh sữa cẩn thận.</li>
-              <li>🟢 <strong>Công cụ tính tiền &amp; POS:</strong> Tuyệt đối bảo quản iPad POS quầy thu ngân, ngăn kéo đựng tiền mặt và chìa khóa két sắt an toàn.</li>
-              <li>🟢 <strong>Vỡ hỏng do cẩu thả:</strong> Nhân sự làm rơi vỡ ly gốm gieo duyên, hỏng hóc máy móc do thao tác bất cẩn phải tự đền bù theo đúng nguyên giá quy định.</li>
-            </ul>
-          </div>
+        <!-- Item 6 -->
+        <div class="hb-web-card">
+          <span class="hb-emoji">💚</span>
+          <span class="hb-num">6. Chế Độ Bảo Hiểm &amp; Phúc Lợi</span>
         </div>
-
-        <!-- Item 8: Quy định bảo mật -->
-        <div class="hb-item">
-          <div class="hb-header" onclick="toggleHandbook(this)">
-            <span>🔑 8. Quy Định Bảo Mật Thông Tin Nội Bộ</span>
-            <i class="fa-solid fa-chevron-down hb-icon"></i>
-          </div>
-          <div class="hb-content">
-            <p>Giữ gìn giá trị cốt lõi và lợi thế kinh doanh của quán:</p>
-            <ul style="margin-left: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
-              <li>🟢 <strong>Công thức pha chế:</strong> Tuyệt đối không chia sẻ công thức các món uống signature (Cà phê bơ sáp, bơ dẻo dừa nước, cafe muối...) cho người ngoài.</li>
-              <li>🟢 <strong>Tài khoản hệ thống:</strong> Bảo mật mật khẩu phần mềm bán hàng KiotViet, hệ thống Odoo và email công vụ được cấp.</li>
-              <li>🟢 <strong>Thông tin tài chính:</strong> Không tiết lộ doanh thu ca làm, doanh số hằng ngày của chi nhánh hoặc báo cáo chi phí cho đối thủ cạnh tranh.</li>
-            </ul>
-          </div>
+        <!-- Item 7 -->
+        <div class="hb-web-card">
+          <span class="hb-emoji">🛡️</span>
+          <span class="hb-num">7. Bảo Quản Tài Sản Cửa Hàng</span>
+        </div>
+        <!-- Item 8 -->
+        <div class="hb-web-card">
+          <span class="hb-emoji">🔑</span>
+          <span class="hb-num">8. Bảo Mật Thông Tin Nội Bộ</span>
         </div>
       </div>
     </div>
