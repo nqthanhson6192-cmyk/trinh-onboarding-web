@@ -12,11 +12,46 @@
 WORKSPACE_DIR="/Users/thanhson/Documents/AI Note"
 GEMINI_DIR="/Users/thanhson/.gemini/antigravity"
 
-# Thiết lập nơi lưu trữ file backup (Mặc định là Desktop để dễ tìm)
-BACKUP_DEST="/Users/thanhson/Desktop"
+# Thiết lập nơi lưu trữ file backup (Tự động phát hiện Google Drive hoặc lưu ở Desktop)
 DATE_STR=$(date +%Y-%m-%d_%H-%M-%S)
 ZIP_FILE_NAME="Backup_AI_Note_Gemini_${DATE_STR}.zip"
 TEMP_DIR="/Users/thanhson/.gemini/antigravity/scratch/backup_temp_${DATE_STR}"
+
+BACKUP_DEST="/Users/thanhson/Desktop"
+GDRIVE_DETECTED=false
+
+# Tìm đường dẫn Google Drive của người dùng trong thư mục CloudStorage của macOS
+GDRIVE_BASE=$(find "/Users/thanhson/Library/CloudStorage" -maxdepth 1 -type d -name "GoogleDrive-*" 2>/dev/null | head -n 1)
+
+if [ -n "$GDRIVE_BASE" ]; then
+    if [ -d "$GDRIVE_BASE/My Drive" ]; then
+        BACKUP_DEST="$GDRIVE_BASE/My Drive/AI_Note_Backups"
+        GDRIVE_DETECTED=true
+    elif [ -d "$GDRIVE_BASE/Tệp của tôi" ]; then
+        BACKUP_DEST="$GDRIVE_BASE/Tệp của tôi/AI_Note_Backups"
+        GDRIVE_DETECTED=true
+    elif [ -d "$GDRIVE_BASE/Shared drives" ]; then
+        BACKUP_DEST="$GDRIVE_BASE/Shared drives/AI_Note_Backups"
+        GDRIVE_DETECTED=true
+    else
+        BACKUP_DEST="$GDRIVE_BASE/AI_Note_Backups"
+        GDRIVE_DETECTED=true
+    fi
+fi
+
+# Nếu chưa tìm thấy, kiểm tra đường dẫn thư mục Google Drive truyền thống ở Home
+if [ "$GDRIVE_DETECTED" = false ]; then
+    if [ -d "/Users/thanhson/Google Drive/My Drive" ]; then
+        BACKUP_DEST="/Users/thanhson/Google Drive/My Drive/AI_Note_Backups"
+        GDRIVE_DETECTED=true
+    elif [ -d "/Users/thanhson/Google Drive" ]; then
+        BACKUP_DEST="/Users/thanhson/Google Drive/AI_Note_Backups"
+        GDRIVE_DETECTED=true
+    fi
+fi
+
+# Tạo thư mục lưu trữ sao lưu nếu chưa tồn tại
+mkdir -p "$BACKUP_DEST"
 
 echo "=========================================================="
 echo "🛡️  BẮT ĐẦU QUÁ TRÌNH SAO LƯU DỮ LIỆU AN TOÀN..."
@@ -80,6 +115,11 @@ echo "📍 File sao lưu được lưu tại: $BACKUP_DEST/$ZIP_FILE_NAME"
 echo "📊 Dung lượng file backup:"
 du -h "$BACKUP_DEST/$ZIP_FILE_NAME"
 echo "=========================================================="
-echo "💡 Gợi ý: Hãy sao chép file .zip này lên Google Drive,"
-echo "   OneDrive, USB hoặc ổ cứng di động để đảm bảo an toàn tuyệt đối!"
+if [ "$GDRIVE_DETECTED" = true ]; then
+    echo "☁️  TRẠNG THÁI: ĐÃ LƯU TRỰC TIẾP VÀO GOOGLE DRIVE!"
+    echo "    File đang được đồng bộ tự động lên đám mây của bạn."
+else
+    echo "⚠️  TRẠNG THÁI: Đã lưu tạm thời ở Desktop (Chưa tìm thấy Google Drive)."
+    echo "    Gợi ý: Cài đặt Google Drive for Desktop để tự động đồng bộ lên mây!"
+fi
 echo "=========================================================="
