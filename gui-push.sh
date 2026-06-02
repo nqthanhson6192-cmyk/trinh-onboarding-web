@@ -38,7 +38,7 @@ echo "🔄 Đang tiến hành đẩy mã nguồn lên GitHub cho tài khoản ${
 
 # Thiết lập Git và đẩy code lên bằng cách ghép credentials vào URL
 git remote remove origin 2>/dev/null
-git remote add origin "https://${USER_NAME}:${USER_TOKEN}@github.com/nqthanhson6192-cmyk/trinh-onboarding-web.git"
+git remote add origin "https://${USER_NAME}:${USER_TOKEN}@github.com/trinhcaphe/trinh-onboarding-web.git"
 git branch -M main
 
 # Thực hiện push
@@ -50,11 +50,11 @@ if [ $? -eq 0 ]; then
   
   # Khôi phục remote sạch không lộ token trong cấu hình local
   git remote remove origin
-  git remote add origin "https://github.com/nqthanhson6192-cmyk/trinh-onboarding-web.git"
+  git remote add origin "https://github.com/trinhcaphe/trinh-onboarding-web.git"
 else
   echo "❌ Thất bại: Không thể đẩy code lên GitHub."
   osascript -e 'tell application "Finder" to display alert "Thất bại" message "Không thể đẩy code lên GitHub. Vui lòng kiểm tra lại Username hoặc mã Token!"' 2>/dev/null
   
   git remote remove origin
-  git remote add origin "https://github.com/nqthanhson6192-cmyk/trinh-onboarding-web.git"
+  git remote add origin "https://github.com/trinhcaphe/trinh-onboarding-web.git"
 fi
