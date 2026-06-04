@@ -550,28 +550,39 @@
       border-left: 4px solid #dfb76c !important; /* Gold border-left */
       color: inherit !important;
       width: 120px !important;
-      padding: 8px 8px 6px !important;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+      background: linear-gradient(135deg, var(--trinh-gold, #dfb76c) 0%, #c9a059 100%) !important;
+      border: 1px solid #c9a059 !important;
+      color: var(--white) !important;
+      width: 140px !important; /* Stand out with larger width */
+      padding: 12px 10px !important; /* Larger padding */
+      box-shadow: 0 4px 15px rgba(223, 183, 108, 0.4) !important;
+      border-radius: 12px !important;
     }
 
     .org-node-card.ceo:hover {
-      background: rgba(223, 183, 108, 0.05) !important;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.25) !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 6px 20px rgba(223, 183, 108, 0.6) !important;
     }
 
     .org-node-card.ceo .role {
-      color: #78828a !important;
-      font-size: 7.5px !important;
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-size: 8px !important;
+      text-transform: uppercase !important;
+      font-weight: 800 !important;
+      display: block !important;
+      margin-bottom: 3px !important;
     }
     .org-node-card.ceo .name {
-      color: #3E2F2E !important;
-      font-size: 11px !important;
+      color: var(--white) !important;
+      font-size: 12px !important;
+      font-weight: 900 !important;
+      display: block !important;
     }
     .org-node-card.ceo .sub {
-      font-size: 7.5px !important;
+      font-size: 8px !important;
       display: block !important;
-      margin-top: 2px !important;
-      color: #dfb76c !important;
+      margin-top: 3px !important;
+      color: rgba(255, 255, 255, 0.9) !important;
       font-weight: 700 !important;
     }
 
